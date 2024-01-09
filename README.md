@@ -28,6 +28,35 @@ To obtain your logs API token, view instructions from [BetterStack](https://bett
 
 ## Features
 
+### Uptime
+- [ ] Monitors
+- [ ] Monitor groups
+- [ ] Heartbeats
+- [ ] Heartbeat groups
+- [ ] On-call calendar
+- [ ] Escalation policies
+- [ ] Incidents
+- [ ] New Relic Integrations
+- [ ] Datadog Integrations
+- [ ] AWS Cloudwatch Integrations
+- [ ] Azure Integrations
+- [ ] Google Monitoring Integrations
+- [ ] Grafana Integrations
+- [ ] Prometheus Integrations
+- [ ] Email Integrations
+- [ ] Incoming webhooks
+- [ ] Splunk On-call Integrations
+- [ ] PagerDuty Integrations
+- [ ] Status Pages
+- [ ] Status Pages Sections
+- [ ] Status Pages Resources 
+- [ ] Status Pages Reports 
+- [ ] Status Pages Report Updates 
+- [ ] Metadata
+
+### Logs
+- [ ] Sources
+- [ ] Query
 <!-- ## Usage/Examples
 
 ```golang
