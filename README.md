@@ -55,7 +55,7 @@ To obtain your logs API token, view instructions from [BetterStack](https://bett
 - [ ] Metadata
 
 ### Logs
-- [ ] Sources
+- [x] Sources
 - [x] Query
 <!-- ## Usage/Examples
 
