@@ -56,7 +56,7 @@ To obtain your logs API token, view instructions from [BetterStack](https://bett
 
 ### Logs
 - [ ] Sources
-- [ ] Query
+- [x] Query
 <!-- ## Usage/Examples
 
 ```golang
