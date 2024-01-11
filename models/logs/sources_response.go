@@ -1,17 +1,19 @@
 package logs
 
-type SourcesResponse struct {
-	Data       []SourceData `json:"data"`
-	Pagination Pagination   `json:"pagination,omitempty"`
+// Sources represents a response containing a list of log sources.
+type Sources struct {
+	Data       []Source   `json:"data"`
+	Pagination pagination `json:"pagination,omitempty"`
 }
 
-type SourceData struct {
+// Source represents a log source.
+type Source struct {
 	ID         string            `json:"id"`
 	Type       string            `json:"type"`
-	Attributes SourcesAttributes `json:"attributes"`
+	Attributes sourcesAttributes `json:"attributes"`
 }
 
-type SourcesAttributes struct {
+type sourcesAttributes struct {
 	TeamID                int      `json:"team_id"`
 	Name                  string   `json:"name"`
 	TableName             string   `json:"table_name"`
@@ -31,7 +33,7 @@ type SourcesAttributes struct {
 	GrafanaPrimaryFields  []string `json:"grafana_primary_fields"`
 }
 
-type Pagination struct {
+type pagination struct {
 	First string `json:"first"`
 	Last  string `json:"last"`
 	Prev  string `json:"prev"`
