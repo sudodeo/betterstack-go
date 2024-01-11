@@ -8,9 +8,18 @@ import (
 )
 
 func TestFetchLogs(t *testing.T) {
-	_logs, err := bs.FetchLogs()
+	// Test case 1: Successful response without query params
+	_logs, err := bs.FetchLogs(nil)
 	assert.Nil(t, err)
 	assert.NotEmpty(t, _logs)
+	assert.IsType(t, &logs.Logs{}, _logs)
 
+	// Test case 2: Successful response with query params
+	querParams := &logs.FetchLogsParams{
+		Batch: 50,
+	}
+	_logs, err = bs.FetchLogs(querParams)
+	assert.Nil(t, err)
+	assert.NotEmpty(t, _logs)
 	assert.IsType(t, &logs.Logs{}, _logs)
 }
