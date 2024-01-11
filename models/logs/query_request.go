@@ -1,7 +1,8 @@
 package logs
 
-type ListQueryParams struct {
-	SourceIDs string `json:"source_ids,omitempty"`
+// FetchLogsParams represents the request body to fetch logs
+type FetchLogsParams struct {
+	SourceIDs string `json:"source_ids,omitempty"` // list of source IDs joined by comma e.g "sourceID1,sourceID2"
 
 	Query string `json:"query,omitempty"` // Possible values
 
@@ -13,8 +14,3 @@ type ListQueryParams struct {
 
 	Order string `json:"order,omitempty"` // Possible values: newest_first, oldest_first. Default: newest_first
 }
-
-// strings.Join(qp.SourceIDs, ",")
-
-// q := []{"simple", "compound"}
-// o := []{"newest_first", "oldest_first"}
