@@ -1,10 +1,12 @@
 package logs
 
+// CreateSourceBodyParams represents the request body required to create log source
 type CreateSourceBodyParams struct {
 	Name     string `json:"name"`     // source name
 	Platform string `json:"platform"` // source platform (get options via `PlatformList`)
 }
 
+// UpdateSourceBodyParams represents the request body required to update log source
 type UpdateSourceBodyParams struct {
 	Name            string `json:"name"`             // Source name
 	IngestingPaused bool   `json:"ingesting_paused"` // Enable or disable ingesting for this source
@@ -53,6 +55,7 @@ type platform struct {
 	VercelIntegration string
 }
 
+// PlatformList is the list of supported platforms
 var PlatformList = platform{
 	Apache2:           "apache2",
 	AwsCloudwatch:     "aws_cloudwatch",
@@ -95,5 +98,3 @@ var PlatformList = platform{
 	Vector:            "vector",
 	VercelIntegration: "vercel_integration",
 }
-
-// fmt.Println(platformList.Docker)

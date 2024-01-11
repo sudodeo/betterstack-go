@@ -1,11 +1,12 @@
 package logs
 
-type FetchLogsResponse struct {
-	Data       []QueryData `json:"data"`
-	Pagination Pagination  `json:"pagination"`
+// Logs represents a response containing a list of logs
+type Logs struct {
+	Data       []log      `json:"data"`
+	Pagination pagination `json:"pagination"`
 }
 
-type QueryData struct {
+type log struct {
 	App                          string `json:"_app"`
 	SourceID                     string `json:"_source_id"`
 	Dt                           string `json:"dt"`

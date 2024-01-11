@@ -8,7 +8,7 @@ import (
 )
 
 // FetchLogs fetches logs from the Betterstack API.
-func (bs *Betterstack) FetchLogs() (*logs.FetchLogsResponse, error) {
+func (bs *Betterstack) FetchLogs() (*logs.Logs, error) {
 	req, err := http.NewRequest("GET", "/api/v1/query", nil)
 	if err != nil {
 		return nil, err
@@ -19,7 +19,7 @@ func (bs *Betterstack) FetchLogs() (*logs.FetchLogsResponse, error) {
 		return nil, err
 	}
 
-	data := &logs.FetchLogsResponse{}
+	data := &logs.Logs{}
 	err = json.Unmarshal(body, data)
 	if err != nil {
 		return nil, err

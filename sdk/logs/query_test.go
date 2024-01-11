@@ -12,5 +12,5 @@ func TestFetchLogs(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotEmpty(t, _logs)
 
-	assert.IsType(t, &logs.FetchLogsResponse{}, _logs)
+	assert.IsType(t, &logs.Logs{}, _logs)
 }

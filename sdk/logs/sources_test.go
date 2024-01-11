@@ -18,7 +18,7 @@ func TestListSources(t *testing.T) {
 	sources, err := bs.ListSources(&page, nil)
 	assert.Nil(t, err)
 	assert.NotNil(t, sources)
-	assert.IsType(t, &logs.SourcesResponse{}, sources)
+	assert.IsType(t, &logs.Sources{}, sources)
 
 	// Test case 2: failed API response due to invalid page number
 	page = -1
@@ -37,7 +37,7 @@ func TestCreateSource(t *testing.T) {
 	source, err := bs.CreateSource(*bodyParams)
 	assert.Nil(t, err)
 	assert.NotNil(t, source)
-	assert.IsType(t, &logs.SourceData{}, source)
+	assert.IsType(t, &logs.Source{}, source)
 	testSourceID = source.ID
 
 	// Test case 2: failed API response due to missing name
@@ -60,7 +60,7 @@ func TestGetSource(t *testing.T) {
 	source, err := bs.GetSource(testSourceID)
 	assert.Nil(t, err)
 	assert.NotNil(t, source)
-	assert.IsType(t, &logs.SourceData{}, source)
+	assert.IsType(t, &logs.Source{}, source)
 
 	// Test case 2: failed API response
 	source, err = bs.GetSource("invalidID")
@@ -78,7 +78,7 @@ func TestUpdateSource(t *testing.T) {
 	source, err := bs.UpdateSource(testSourceID, bodyParams)
 	assert.Nil(t, err)
 	assert.NotNil(t, source)
-	assert.IsType(t, &logs.SourceData{}, source)
+	assert.IsType(t, &logs.Source{}, source)
 	assert.Equal(t, updateName, source.Attributes.Name)
 	assert.Equal(t, true, source.Attributes.IngestingPaused)
 
