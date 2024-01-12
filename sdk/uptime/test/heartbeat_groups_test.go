@@ -52,6 +52,6 @@ func TestUpdateHeartbeatGroup(t *testing.T) {
 }
 
 func TestDeleteHeartbeatGroup(t *testing.T) {
-		err := bs.DeleteHeartbeatGroup(heartbeatGroupID)
+	err := bs.DeleteHeartbeatGroup(heartbeatGroupID)
 	assert.Nil(t, err)
 }
