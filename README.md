@@ -30,10 +30,10 @@ To obtain your logs API token, view instructions from [BetterStack](https://bett
 
 ### Uptime
 - [x] Monitors
-- [ ] Monitor groups
-- [ ] Heartbeats
-- [ ] Heartbeat groups
-- [ ] On-call calendar
+- [x] Monitor groups
+- [x] Heartbeats
+- [x] Heartbeat groups
+- [x] On-call calendar
 - [ ] Escalation policies
 - [ ] Incidents
 - [ ] New Relic Integrations
