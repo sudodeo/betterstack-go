@@ -29,7 +29,7 @@ To obtain your logs API token, view instructions from [BetterStack](https://bett
 ## Features
 
 ### Uptime
-- [ ] Monitors
+- [x] Monitors
 - [ ] Monitor groups
 - [ ] Heartbeats
 - [ ] Heartbeat groups
