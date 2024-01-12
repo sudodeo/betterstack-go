@@ -17,7 +17,7 @@ type monitorAttributes struct {
 	URL                 string          `json:"url"`
 	PronounceablName    string          `json:"pronounceable_name"`
 	MonitorType         string          `json:"monitor_type"`
-	MonitorGroupID      string          `json:"monitor_group_id"`
+	MonitorGroupID      int             `json:"monitor_group_id"`
 	LastCheckedAt       string          `json:"last_checked_at"`
 	Status              string          `json:"status"`
 	RequiredKeyword     string          `json:"required_keyword"`
@@ -94,6 +94,7 @@ type responseTime struct {
 	ResponseTime float64 `json:"response_time"`
 }
 
+// MonitorAvailability represents a response containing monitor availability
 type MonitorAvailability struct {
 	ID         string                 `json:"id"`
 	Type       string                 `json:"type"`
