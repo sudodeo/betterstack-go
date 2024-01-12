@@ -62,7 +62,10 @@ type requestHeader struct {
 type relationships struct {
 	Policy struct {
 		Data string `json:"data"`
-	} `json:"policy"`
+	} `json:"policy,omitempty"`
+	OncallUsers struct {
+		Data []user `json:"data"`
+	} `json:"on_call_users,omitempty"`
 }
 
 type pagination struct {
