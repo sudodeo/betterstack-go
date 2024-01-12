@@ -5,18 +5,18 @@ import (
 	"os"
 	"testing"
 
-	_ "github.com/joho/godotenv"
+	"github.com/sudodeo/betterstack-go/sdk/logs"
 )
 
-var bs *Betterstack
+var bs *logs.Betterstack
 
 func TestMain(m *testing.M) {
 	var err error
-	bs, err = NewFromENV()
+	bs, err = logs.NewFromENV()
 	if err != nil {
 		log.Fatal("could not initialise test: ", err)
 	}
-	if bs.token == "" {
+	if bs.Token == "" {
 		log.Fatal("could not load token")
 	}
 	os.Exit(m.Run())
