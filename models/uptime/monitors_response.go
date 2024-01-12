@@ -10,7 +10,7 @@ type Monitors struct {
 type Monitor struct {
 	ID         string            `json:"id"`
 	Type       string            `json:"type"`
-	Attributes monitorAttributes `json:"attributes"`
+	Attributes monitorAttributes `json:"attributes,omitempty"`
 }
 
 type monitorAttributes struct {
@@ -61,11 +61,25 @@ type requestHeader struct {
 
 type relationships struct {
 	Policy struct {
-		Data string `json:"data"`
+		Data string `json:"data,omitempty"`
 	} `json:"policy,omitempty"`
 	OncallUsers struct {
-		Data []user `json:"data"`
+		Data []user `json:"data,omitempty"`
 	} `json:"on_call_users,omitempty"`
+	Monitor struct {
+		Data relationshipData `json:"data"`
+	} `json:"monitor,omitempty"`
+	Owner struct {
+		Data relationshipData `json:"data,omitempty"`
+	} `json:"owner"`
+	WebhookIntegration struct {
+		Data relationshipData `json:"data,omitempty"`
+	} `json:"webhook_integration,omitempty"`
+}
+
+type relationshipData struct {
+	ID   string `json:"id,omitempty"`
+	Type string `json:"type,omitempty"`
 }
 
 type pagination struct {
