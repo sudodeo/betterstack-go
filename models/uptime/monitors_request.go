@@ -19,7 +19,7 @@ type MonitorAvailabilityQuery struct {
 // MonitorReqBody represents request body to create a monitor
 // URL field is required, every other field is optional
 type MonitorReqBody struct {
-	URL                 string          `json:"url,omitempty"`                   // Required
+	URL                 string          `json:"url"`                             // Required
 	MonitorType         string          `json:"monitor_type,omitempty"`          // defaults to `status` if empty. access valid values with MonitorTypeList
 	PronounceablName    string          `json:"pronounceabl_name,omitempty"`     // name of monitor
 	Email               bool            `json:"email,omitempty"`                 // Send email alerts

@@ -2,9 +2,9 @@ package uptime
 
 // HeartbeatReqBody represents the request body for heartbeats
 type HeartbeatReqBody struct {
-	Name             string `json:"name,omitempty"`               // Required. The name of the service for this heartbeat.
-	Period           int    `json:"period,omitempty"`             // Required. How often should we expect this heartbeat? In seconds Minimum value: 30 seconds
-	Grace            int    `json:"grace,omitempty"`              // Required. Heartbeats can fluctuate; specify this value to control what is still acceptable Minimum value: 0 seconds We recommend setting this to approx. 20% of period
+	Name             string `json:"name"`                         // Required. The name of the service for this heartbeat.
+	Period           int    `json:"period"`                       // Required. How often should we expect this heartbeat? In seconds Minimum value: 30 seconds
+	Grace            int    `json:"grace"`                        // Required. Heartbeats can fluctuate; specify this value to control what is still acceptable Minimum value: 0 seconds We recommend setting this to approx. 20% of period
 	Call             bool   `json:"call,omitempty"`               // Should we call the on-call person?
 	Sms              bool   `json:"sms,omitempty"`                // Should we send an SMS to the on-call person?
 	Email            bool   `json:"email,omitempty"`              // Should we send an email to the on-call person?
