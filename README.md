@@ -35,7 +35,7 @@ To obtain your logs API token, view instructions from [BetterStack](https://bett
 - [x] Heartbeat groups
 - [x] On-call calendar
 - [ ] Escalation policies
-- [ ] Incidents
+- [x] Incidents
 - [ ] New Relic Integrations
 - [ ] Datadog Integrations
 - [ ] AWS Cloudwatch Integrations
@@ -47,12 +47,12 @@ To obtain your logs API token, view instructions from [BetterStack](https://bett
 - [ ] Incoming webhooks
 - [ ] Splunk On-call Integrations
 - [ ] PagerDuty Integrations
-- [ ] Status Pages
-- [ ] Status Pages Sections
+- [x] Status Pages
+- [x] Status Pages Sections
 - [ ] Status Pages Resources 
 - [ ] Status Pages Reports 
 - [ ] Status Pages Report Updates 
-- [ ] Metadata
+- [x] Metadata
 
 ### Logs
 - [x] Sources
