@@ -1,7 +1,6 @@
 package uptime
 
 import (
-	"encoding/json"
 	"errors"
 	"io"
 	"net/http"
@@ -20,22 +19,9 @@ type Betterstack struct {
 	Token   string
 }
 
-// FailedRequest represents a failed request in the BetterStack SDK.
-type FailedRequest struct {
-	Errors        string `json:"errors"`
-	InvalidValues struct {
-		SourceIDs string `json:"source_ids"`
-		Batch     string `json:"batch"`
-		From      string `json:"from"`
-		To        string `json:"to"`
-		Order     string `json:"order"`
-	} `json:"invalid_values,omitempty"`
-}
-
 // MakeAPIRequest sends an API request using the provided http.Request object and returns the response body as a byte array.
 // If the request fails or the response status code is not 200, an error is returned.
 func (bs *Betterstack) MakeAPIRequest(req *http.Request) ([]byte, error) {
-	var errData *FailedRequest
 	req.Header = http.Header{
 		"accept":        {"application/json"},
 		"content-type":  {"application/json"},
@@ -62,13 +48,9 @@ func (bs *Betterstack) MakeAPIRequest(req *http.Request) ([]byte, error) {
 	// Success is indicated with 2xx status codes:
 	statusOK := res.StatusCode >= 200 && res.StatusCode < 300
 	if !statusOK {
-		if err = json.Unmarshal(body, &errData); err != nil {
-			return nil, err
-		}
-
 		return nil, &BetterStackError{
 			StatusCode: res.StatusCode,
-			Message:    errData.Errors,
+			Message:    string(body),
 		}
 	}
 	if res.StatusCode == 204 {

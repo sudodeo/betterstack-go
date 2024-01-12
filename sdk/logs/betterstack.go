@@ -16,7 +16,7 @@ import (
 type Betterstack struct {
 	client  *http.Client
 	baseURL string
-	token   string
+	Token   string
 }
 
 // MakeAPIRequest sends an API request using the provided http.Request object and returns the response body as a byte array.
@@ -25,7 +25,7 @@ func (bs *Betterstack) MakeAPIRequest(req *http.Request) ([]byte, error) {
 	req.Header = http.Header{
 		"accept":        {"application/json"},
 		"content-type":  {"application/json"},
-		"Authorization": {"Bearer " + bs.token},
+		"Authorization": {"Bearer " + bs.Token},
 	}
 
 	req.URL = &url.URL{
@@ -79,7 +79,7 @@ func NewFromENV() (*Betterstack, error) {
 	logsAPIToken := os.Getenv("LOGS_API_TOKEN")
 
 	bs := Betterstack{
-		token:   logsAPIToken,
+		Token:   logsAPIToken,
 		client:  &http.Client{},
 		baseURL: "logs.betterstack.com",
 	}
