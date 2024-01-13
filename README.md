@@ -49,7 +49,7 @@ To obtain your logs API token, view instructions from [BetterStack](https://bett
 - [ ] PagerDuty Integrations
 - [x] Status Pages
 - [x] Status Pages Sections
-- [ ] Status Pages Resources 
+- [x] Status Pages Resources 
 - [ ] Status Pages Reports 
 - [ ] Status Pages Report Updates 
 - [x] Metadata
