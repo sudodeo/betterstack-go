@@ -67,17 +67,20 @@ type relationships struct {
 		Data []user `json:"data,omitempty"`
 	} `json:"on_call_users,omitempty"`
 	Monitor struct {
-		Data relationshipData `json:"data"`
+		Data data `json:"data"`
 	} `json:"monitor,omitempty"`
 	Owner struct {
-		Data relationshipData `json:"data,omitempty"`
+		Data data `json:"data,omitempty"`
 	} `json:"owner"`
 	WebhookIntegration struct {
-		Data relationshipData `json:"data,omitempty"`
+		Data data `json:"data,omitempty"`
 	} `json:"webhook_integration,omitempty"`
+	StatusUpdates struct {
+		Data []data
+	}
 }
 
-type relationshipData struct {
+type data struct {
 	ID   string `json:"id,omitempty"`
 	Type string `json:"type,omitempty"`
 }
