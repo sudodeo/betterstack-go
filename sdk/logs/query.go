@@ -6,11 +6,11 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/sudodeo/betterstack-go/models/logs"
+	"github.com/sudodeo/betterstack-go/models"
 )
 
 // FetchLogs fetches logs from the Betterstack API.
-func (bs *Betterstack) FetchLogs(queryParams *logs.FetchLogsParams) (*logs.Logs, error) {
+func (bs *Betterstack) FetchLogs(queryParams *models.FetchLogsParams) (*models.Logs, error) {
 	var reqBody io.Reader
 
 	if queryParams != nil {
@@ -31,7 +31,7 @@ func (bs *Betterstack) FetchLogs(queryParams *logs.FetchLogsParams) (*logs.Logs,
 		return nil, err
 	}
 
-	data := &logs.Logs{}
+	data := &models.Logs{}
 	err = json.Unmarshal(body, data)
 	if err != nil {
 		return nil, err

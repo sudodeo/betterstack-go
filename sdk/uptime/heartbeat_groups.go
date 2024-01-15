@@ -5,11 +5,11 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/sudodeo/betterstack-go/models/uptime"
+	"github.com/sudodeo/betterstack-go/models"
 )
 
 // ListHeartbeatGroups returns a list of all your heartbeat groups.
-func (bs *Betterstack) ListHeartbeatGroups() (*uptime.Groups, error) {
+func (bs *Betterstack) ListHeartbeatGroups() (*models.Groups, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/heartbeat-groups", nil)
 	if err != nil {
 		return nil, err
@@ -20,7 +20,7 @@ func (bs *Betterstack) ListHeartbeatGroups() (*uptime.Groups, error) {
 		return nil, err
 	}
 
-	data := &uptime.Groups{}
+	data := &models.Groups{}
 	err = json.Unmarshal(body, data)
 	if err != nil {
 		return nil, err
@@ -30,7 +30,7 @@ func (bs *Betterstack) ListHeartbeatGroups() (*uptime.Groups, error) {
 }
 
 // GetHeartbeatGroup returns an existing heartbeat group by ID.
-func (bs *Betterstack) GetHeartbeatGroup(heartbeatID string) (*uptime.Group, error) {
+func (bs *Betterstack) GetHeartbeatGroup(heartbeatID string) (*models.Group, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/heartbeat-groups/"+heartbeatID, nil)
 	if err != nil {
 		return nil, err
@@ -42,7 +42,7 @@ func (bs *Betterstack) GetHeartbeatGroup(heartbeatID string) (*uptime.Group, err
 	}
 
 	type response struct {
-		Data uptime.Group `json:"data"`
+		Data models.Group `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -55,7 +55,7 @@ func (bs *Betterstack) GetHeartbeatGroup(heartbeatID string) (*uptime.Group, err
 }
 
 // CreateHeartbeatGroup returns either a newly created heartbeat group, or validation errors.
-func (bs *Betterstack) CreateHeartbeatGroup(bodyParams uptime.GroupReqBody) (*uptime.Group, error) {
+func (bs *Betterstack) CreateHeartbeatGroup(bodyParams models.GroupReqBody) (*models.Group, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -72,7 +72,7 @@ func (bs *Betterstack) CreateHeartbeatGroup(bodyParams uptime.GroupReqBody) (*up
 	}
 
 	type response struct {
-		Data uptime.Group `json:"data"`
+		Data models.Group `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -85,7 +85,7 @@ func (bs *Betterstack) CreateHeartbeatGroup(bodyParams uptime.GroupReqBody) (*up
 }
 
 // UpdateHeartbeatGroup updates the attributes of an existing heartbeat group. Send only the parameters you wish to change (e.g. name)
-func (bs *Betterstack) UpdateHeartbeatGroup(heartbeatID string, bodyParams uptime.GroupReqBody) (*uptime.Group, error) {
+func (bs *Betterstack) UpdateHeartbeatGroup(heartbeatID string, bodyParams models.GroupReqBody) (*models.Group, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -102,7 +102,7 @@ func (bs *Betterstack) UpdateHeartbeatGroup(heartbeatID string, bodyParams uptim
 	}
 
 	type response struct {
-		Data uptime.Group `json:"data"`
+		Data models.Group `json:"data"`
 	}
 
 	resJSON := &response{}

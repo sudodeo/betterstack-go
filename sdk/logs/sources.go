@@ -7,13 +7,13 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/sudodeo/betterstack-go/models/logs"
+	"github.com/sudodeo/betterstack-go/models"
 )
 
 /*
 ListSources Returns a list of your team's existing sources.
 */
-func (bs *Betterstack) ListSources(page, perPage *int) (*logs.Sources, error) {
+func (bs *Betterstack) ListSources(page, perPage *int) (*models.Sources, error) {
 	if perPage != nil && *perPage > 50 {
 		return nil, errors.New("perPage can only be max 50")
 	} else if perPage != nil && *perPage < 1 {
@@ -40,7 +40,7 @@ func (bs *Betterstack) ListSources(page, perPage *int) (*logs.Sources, error) {
 		return nil, err
 	}
 
-	data := &logs.Sources{}
+	data := &models.Sources{}
 	err = json.Unmarshal(body, data)
 	if err != nil {
 		return nil, err
@@ -50,7 +50,7 @@ func (bs *Betterstack) ListSources(page, perPage *int) (*logs.Sources, error) {
 }
 
 // GetSource retrieves the source data for a given source ID.
-func (bs *Betterstack) GetSource(sourceID string) (*logs.Source, error) {
+func (bs *Betterstack) GetSource(sourceID string) (*models.Source, error) {
 	req, err := http.NewRequest("GET", "/api/v1/sources/"+sourceID, nil)
 	if err != nil {
 		return nil, err
@@ -61,7 +61,7 @@ func (bs *Betterstack) GetSource(sourceID string) (*logs.Source, error) {
 		return nil, err
 	}
 
-	data := &logs.Source{}
+	data := &models.Source{}
 	err = json.Unmarshal(body, data)
 	if err != nil {
 		return nil, err
@@ -71,9 +71,9 @@ func (bs *Betterstack) GetSource(sourceID string) (*logs.Source, error) {
 }
 
 // CreateSource creates a new source in the Betterstack SDK.
-// It takes a bodyParams parameter of type logs.CreateSourceBodyParams, which contains the necessary information to create the source.
-// It returns a *logs.Source and an error.
-func (bs *Betterstack) CreateSource(bodyParams logs.CreateSourceBodyParams) (*logs.Source, error) {
+// It takes a bodyParams parameter of type models.CreateSourceBodyParams, which contains the necessary information to create the source.
+// It returns a *models.Source and an error.
+func (bs *Betterstack) CreateSource(bodyParams models.CreateSourceBodyParams) (*models.Source, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -89,7 +89,7 @@ func (bs *Betterstack) CreateSource(bodyParams logs.CreateSourceBodyParams) (*lo
 	}
 
 	type response struct {
-		Data *logs.Source `json:"data"`
+		Data *models.Source `json:"data"`
 	}
 	bodyJSON := &response{}
 	err = json.Unmarshal(body, bodyJSON)
@@ -101,7 +101,7 @@ func (bs *Betterstack) CreateSource(bodyParams logs.CreateSourceBodyParams) (*lo
 }
 
 // UpdateSource Updates an existing source. Send only the parameters you wish to change (e.g. name )
-func (bs *Betterstack) UpdateSource(sourceID string, bodyParams logs.UpdateSourceBodyParams) (*logs.Source, error) {
+func (bs *Betterstack) UpdateSource(sourceID string, bodyParams models.UpdateSourceBodyParams) (*models.Source, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -118,7 +118,7 @@ func (bs *Betterstack) UpdateSource(sourceID string, bodyParams logs.UpdateSourc
 	}
 
 	type response struct {
-		Data *logs.Source `json:"data"`
+		Data *models.Source `json:"data"`
 	}
 	bodyJSON := &response{}
 	err = json.Unmarshal(body, bodyJSON)

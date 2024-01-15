@@ -1,4 +1,4 @@
-package uptime
+package models
 
 // StatusPages represents a collection of status pages.
 type StatusPages struct {

@@ -1,4 +1,4 @@
-package uptime
+package models
 
 // IncidentReqBody represents the request body for an incident request.
 type IncidentReqBody struct {

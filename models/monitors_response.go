@@ -1,4 +1,4 @@
-package uptime
+package models
 
 // Monitors represents a response containing a list of responses
 type Monitors struct {
@@ -83,13 +83,6 @@ type relationships struct {
 type data struct {
 	ID   string `json:"id,omitempty"`
 	Type string `json:"type,omitempty"`
-}
-
-type pagination struct {
-	First string `json:"first"`
-	Last  string `json:"last"`
-	Prev  string `json:"prev"`
-	Next  string `json:"next"`
 }
 
 // MonitorResponseTime represents a response containing

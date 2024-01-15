@@ -5,11 +5,11 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/sudodeo/betterstack-go/models/uptime"
+	"github.com/sudodeo/betterstack-go/models"
 )
 
 // ListIncidents returns a list of all incidents with the option to filter incidents by monitor.
-func (bs *Betterstack) ListIncidents() (*uptime.Incidents, error) {
+func (bs *Betterstack) ListIncidents() (*models.Incidents, error) {
 	// TODO: add query params
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/incidents", nil)
 	if err != nil {
@@ -21,7 +21,7 @@ func (bs *Betterstack) ListIncidents() (*uptime.Incidents, error) {
 		return nil, err
 	}
 
-	data := &uptime.Incidents{}
+	data := &models.Incidents{}
 	err = json.Unmarshal(body, data)
 	if err != nil {
 		return nil, err
@@ -31,7 +31,7 @@ func (bs *Betterstack) ListIncidents() (*uptime.Incidents, error) {
 }
 
 // GetIncident returns a single incident.
-func (bs *Betterstack) GetIncident(incidentID string) (*uptime.Incident, error) {
+func (bs *Betterstack) GetIncident(incidentID string) (*models.Incident, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/incidents/"+incidentID, nil)
 	if err != nil {
 		return nil, err
@@ -43,7 +43,7 @@ func (bs *Betterstack) GetIncident(incidentID string) (*uptime.Incident, error) 
 	}
 
 	type response struct {
-		Data uptime.Incident `json:"data"`
+		Data models.Incident `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -56,7 +56,7 @@ func (bs *Betterstack) GetIncident(incidentID string) (*uptime.Incident, error) 
 }
 
 // GetIncidentTimelineEvents returns a list of timeline items for the given incident.
-func (bs *Betterstack) GetIncidentTimelineEvents(incidentID string) (*uptime.IncidentTimelineEvents, error) {
+func (bs *Betterstack) GetIncidentTimelineEvents(incidentID string) (*models.IncidentTimelineEvents, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/incidents/"+incidentID+"/timeline", nil)
 	if err != nil {
 		return nil, err
@@ -67,7 +67,7 @@ func (bs *Betterstack) GetIncidentTimelineEvents(incidentID string) (*uptime.Inc
 		return nil, err
 	}
 
-	data := &uptime.IncidentTimelineEvents{}
+	data := &models.IncidentTimelineEvents{}
 	err = json.Unmarshal(body, data)
 	if err != nil {
 		return nil, err
@@ -77,7 +77,7 @@ func (bs *Betterstack) GetIncidentTimelineEvents(incidentID string) (*uptime.Inc
 }
 
 // CreateIncident returns a newly created incident or validation errors.
-func (bs *Betterstack) CreateIncident(bodyParams uptime.IncidentReqBody) (*uptime.Incident, error) {
+func (bs *Betterstack) CreateIncident(bodyParams models.IncidentReqBody) (*models.Incident, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -94,7 +94,7 @@ func (bs *Betterstack) CreateIncident(bodyParams uptime.IncidentReqBody) (*uptim
 	}
 
 	type response struct {
-		Data uptime.Incident `json:"data"`
+		Data models.Incident `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -107,7 +107,7 @@ func (bs *Betterstack) CreateIncident(bodyParams uptime.IncidentReqBody) (*uptim
 }
 
 // AcknowledgeIncident acknowledges an incident.
-func (bs *Betterstack) AcknowledgeIncident(incidentID, email string) (*uptime.Incident, error) {
+func (bs *Betterstack) AcknowledgeIncident(incidentID, email string) (*models.Incident, error) {
 	type reqBody struct {
 		AcknowledgedBy string `json:"acknowledged_by"`
 	}
@@ -130,7 +130,7 @@ func (bs *Betterstack) AcknowledgeIncident(incidentID, email string) (*uptime.In
 	}
 
 	type response struct {
-		Data uptime.Incident `json:"data"`
+		Data models.Incident `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -143,7 +143,7 @@ func (bs *Betterstack) AcknowledgeIncident(incidentID, email string) (*uptime.In
 }
 
 // ResolveIncident resolves an incident.
-func (bs *Betterstack) ResolveIncident(incidentID, email string) (*uptime.Incident, error) {
+func (bs *Betterstack) ResolveIncident(incidentID, email string) (*models.Incident, error) {
 	type reqBody struct {
 		ResolvedBy string `json:"resolved_by"`
 	}
@@ -166,7 +166,7 @@ func (bs *Betterstack) ResolveIncident(incidentID, email string) (*uptime.Incide
 	}
 
 	type response struct {
-		Data uptime.Incident `json:"data"`
+		Data models.Incident `json:"data"`
 	}
 
 	resJSON := &response{}

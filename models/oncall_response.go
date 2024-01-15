@@ -1,4 +1,4 @@
-package uptime
+package models
 
 // OncallCalendars represents the response structure for on-call calendars.
 type OncallCalendars struct {

@@ -1,4 +1,4 @@
-package uptime
+package models
 
 // Groups represents the response body for monitor groups and heartbeat groups
 type Groups struct {

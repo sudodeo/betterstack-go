@@ -5,11 +5,11 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/sudodeo/betterstack-go/models/uptime"
+	"github.com/sudodeo/betterstack-go/models"
 )
 
 // ListMetadata returns list of all metadata
-func (bs *Betterstack) ListMetadata() (*uptime.Metadata, error) {
+func (bs *Betterstack) ListMetadata() (*models.Metadata, error) {
 	// TODO: query params
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/metadata", nil)
 	if err != nil {
@@ -21,7 +21,7 @@ func (bs *Betterstack) ListMetadata() (*uptime.Metadata, error) {
 		return nil, err
 	}
 
-	data := &uptime.Metadata{}
+	data := &models.Metadata{}
 	err = json.Unmarshal(body, data)
 	if err != nil {
 		return nil, err
@@ -31,7 +31,7 @@ func (bs *Betterstack) ListMetadata() (*uptime.Metadata, error) {
 }
 
 // GetMetadataRecord returns a single metadata record.
-func (bs *Betterstack) GetMetadataRecord(metadataID string) (*uptime.MetadataRecord, error) {
+func (bs *Betterstack) GetMetadataRecord(metadataID string) (*models.MetadataRecord, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/metadata/"+metadataID, nil)
 	if err != nil {
 		return nil, err
@@ -43,7 +43,7 @@ func (bs *Betterstack) GetMetadataRecord(metadataID string) (*uptime.MetadataRec
 	}
 
 	type response struct {
-		Data uptime.MetadataRecord `json:"data"`
+		Data models.MetadataRecord `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -56,7 +56,7 @@ func (bs *Betterstack) GetMetadataRecord(metadataID string) (*uptime.MetadataRec
 }
 
 // CreateMetadataRecord creates a new metadata record or returns validation errors.
-func (bs *Betterstack) CreateMetadataRecord(bodyParams uptime.MetadataRecordReqBody) (*uptime.MetadataRecord, error) {
+func (bs *Betterstack) CreateMetadataRecord(bodyParams models.MetadataRecordReqBody) (*models.MetadataRecord, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -73,7 +73,7 @@ func (bs *Betterstack) CreateMetadataRecord(bodyParams uptime.MetadataRecordReqB
 	}
 
 	type response struct {
-		Data uptime.MetadataRecord `json:"data"`
+		Data models.MetadataRecord `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -86,7 +86,7 @@ func (bs *Betterstack) CreateMetadataRecord(bodyParams uptime.MetadataRecordReqB
 }
 
 // UpdateMetadataRecord updates an existing metadata record configuration. Send only the parameters you wish to change (e.g., URL).
-func (bs *Betterstack) UpdateMetadataRecord(metadataID string, bodyParams uptime.MetadataRecordReqBody) (*uptime.MetadataRecord, error) {
+func (bs *Betterstack) UpdateMetadataRecord(metadataID string, bodyParams models.MetadataRecordReqBody) (*models.MetadataRecord, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -103,7 +103,7 @@ func (bs *Betterstack) UpdateMetadataRecord(metadataID string, bodyParams uptime
 	}
 
 	type response struct {
-		Data uptime.MetadataRecord `json:"data"`
+		Data models.MetadataRecord `json:"data"`
 	}
 
 	resJSON := &response{}

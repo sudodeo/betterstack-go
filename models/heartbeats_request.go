@@ -1,4 +1,4 @@
-package uptime
+package models
 
 // HeartbeatReqBody represents the request body for heartbeats
 type HeartbeatReqBody struct {

@@ -1,4 +1,4 @@
-package logs
+package models
 
 // CreateSourceBodyParams represents the request body required to create log source
 type CreateSourceBodyParams struct {

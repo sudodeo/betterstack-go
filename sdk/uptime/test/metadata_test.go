@@ -5,7 +5,7 @@ package uptime_test
 
 // 	"github.com/stretchr/testify/assert"
 
-// 	"github.com/sudodeo/betterstack-go/models/uptime"
+// 	"github.com/sudodeo/betterstack-go/models"
 // )
 
 // ! I cannot test this feature because I am using a free account and I can't get the desired responses
@@ -15,17 +15,17 @@ package uptime_test
 // 	metadata, err := bs.ListMetadata()
 // 	assert.Nil(t, err)
 // 	assert.NotNil(t, metadata)
-// 	assert.IsType(t, &uptime.Metadata{}, metadata)
+// 	assert.IsType(t, &models.Metadata{}, metadata)
 // }
 
 // func TestCreateMetadataRecord(t *testing.T) {
-// 	reqBody := uptime.MetadataRecordReqBody{
+// 	reqBody := models.MetadataRecordReqBody{
 
 // 	}
 // 	heartbeat, err := bs.CreateMetadataRecord(reqBody)
 // 	assert.Nil(t, err)
 // 	assert.NotNil(t, heartbeat)
-// 	assert.IsType(t, &uptime.MetadataRecord{}, heartbeat)
+// 	assert.IsType(t, &models.MetadataRecord{}, heartbeat)
 // 	metadataID = heartbeat.ID
 // }
 
@@ -33,18 +33,18 @@ package uptime_test
 // 	heartbeat, err := bs.GetMetadataRecord(metadataID)
 // 	assert.Nil(t, err)
 // 	assert.NotNil(t, heartbeat)
-// 	assert.IsType(t, &uptime.MetadataRecord{}, heartbeat)
+// 	assert.IsType(t, &models.MetadataRecord{}, heartbeat)
 // 	assert.Equal(t, metadataID, heartbeat.ID)
 // }
 
 // func TestUpdateMetadataRecord(t *testing.T) {
-// 	reqBody := uptime.MetadataRecordReqBody{
+// 	reqBody := models.MetadataRecordReqBody{
 
 // 	}
 // 	heartbeat, err := bs.UpdateMetadataRecord(metadataID, reqBody)
 // 	assert.Nil(t, err)
 // 	assert.NotNil(t, heartbeat)
-// 	assert.IsType(t, &uptime.MetadataRecord{}, heartbeat)
+// 	assert.IsType(t, &models.MetadataRecord{}, heartbeat)
 // 	assert.Equal(t, metadataID, heartbeat.ID)
 // }
 

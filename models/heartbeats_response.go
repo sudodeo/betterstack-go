@@ -1,4 +1,4 @@
-package uptime
+package models
 
 // Heartbeats represents a response containing a list of Heartbeats
 type Heartbeats struct {

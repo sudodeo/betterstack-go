@@ -5,11 +5,11 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/sudodeo/betterstack-go/models/uptime"
+	"github.com/sudodeo/betterstack-go/models"
 )
 
 // ListStatusPageResources returns a list of the resources of your status page.
-func (bs *Betterstack) ListStatusPageResources(statusPageID string) (*uptime.StatusPageResources, error) {
+func (bs *Betterstack) ListStatusPageResources(statusPageID string) (*models.StatusPageResources, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/status-pages/"+statusPageID+"/resources", nil)
 	if err != nil {
 		return nil, err
@@ -20,7 +20,7 @@ func (bs *Betterstack) ListStatusPageResources(statusPageID string) (*uptime.Sta
 		return nil, err
 	}
 
-	data := &uptime.StatusPageResources{}
+	data := &models.StatusPageResources{}
 	err = json.Unmarshal(body, data)
 	if err != nil {
 		return nil, err
@@ -30,7 +30,7 @@ func (bs *Betterstack) ListStatusPageResources(statusPageID string) (*uptime.Sta
 }
 
 // GetStatusPageResource returns a single statusPage by ID.
-func (bs *Betterstack) GetStatusPageResource(statusPageID, resourceID string) (*uptime.StatusPageResource, error) {
+func (bs *Betterstack) GetStatusPageResource(statusPageID, resourceID string) (*models.StatusPageResource, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/status-pages/"+statusPageID+"/resources/"+resourceID, nil)
 	if err != nil {
 		return nil, err
@@ -42,7 +42,7 @@ func (bs *Betterstack) GetStatusPageResource(statusPageID, resourceID string) (*
 	}
 
 	type response struct {
-		Data uptime.StatusPageResource `json:"data"`
+		Data models.StatusPageResource `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -55,7 +55,7 @@ func (bs *Betterstack) GetStatusPageResource(statusPageID, resourceID string) (*
 }
 
 // CreateStatusPageResource returns either a newly created statusPage, or validation errors.
-func (bs *Betterstack) CreateStatusPageResource(statusPageID string, bodyParams uptime.StatusPageResourceReqBody) (*uptime.StatusPageResource, error) {
+func (bs *Betterstack) CreateStatusPageResource(statusPageID string, bodyParams models.StatusPageResourceReqBody) (*models.StatusPageResource, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -72,7 +72,7 @@ func (bs *Betterstack) CreateStatusPageResource(statusPageID string, bodyParams 
 	}
 
 	type response struct {
-		Data uptime.StatusPageResource `json:"data"`
+		Data models.StatusPageResource `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -85,7 +85,7 @@ func (bs *Betterstack) CreateStatusPageResource(statusPageID string, bodyParams 
 }
 
 // UpdateStatusPageResource update an existing statusPage configuration. Send only the parameters you wish to change (e.g. name)
-func (bs *Betterstack) UpdateStatusPageResource(statusPageID, statusPageResourceID string, bodyParams uptime.StatusPageResourceReqBody) (*uptime.StatusPageResource, error) {
+func (bs *Betterstack) UpdateStatusPageResource(statusPageID, statusPageResourceID string, bodyParams models.StatusPageResourceReqBody) (*models.StatusPageResource, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -102,7 +102,7 @@ func (bs *Betterstack) UpdateStatusPageResource(statusPageID, statusPageResource
 	}
 
 	type response struct {
-		Data uptime.StatusPageResource `json:"data"`
+		Data models.StatusPageResource `json:"data"`
 	}
 
 	resJSON := &response{}

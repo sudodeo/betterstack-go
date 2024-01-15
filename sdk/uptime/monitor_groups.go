@@ -5,11 +5,11 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/sudodeo/betterstack-go/models/uptime"
+	"github.com/sudodeo/betterstack-go/models"
 )
 
 // ListMonitorGroups returns a list of all your monitor groups.
-func (bs *Betterstack) ListMonitorGroups() (*uptime.Groups, error) {
+func (bs *Betterstack) ListMonitorGroups() (*models.Groups, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/monitor-groups", nil)
 	if err != nil {
 		return nil, err
@@ -20,7 +20,7 @@ func (bs *Betterstack) ListMonitorGroups() (*uptime.Groups, error) {
 		return nil, err
 	}
 
-	data := &uptime.Groups{}
+	data := &models.Groups{}
 	err = json.Unmarshal(body, data)
 	if err != nil {
 		return nil, err
@@ -30,7 +30,7 @@ func (bs *Betterstack) ListMonitorGroups() (*uptime.Groups, error) {
 }
 
 // GetMonitorGroup retrieves a monitor group by its ID
-func (bs *Betterstack) GetMonitorGroup(monitorGroupID string) (*uptime.Group, error) {
+func (bs *Betterstack) GetMonitorGroup(monitorGroupID string) (*models.Group, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/monitor-groups/"+monitorGroupID, nil)
 	if err != nil {
 		return nil, err
@@ -42,7 +42,7 @@ func (bs *Betterstack) GetMonitorGroup(monitorGroupID string) (*uptime.Group, er
 	}
 
 	type response struct {
-		Data uptime.Group `json:"data"`
+		Data models.Group `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -55,7 +55,7 @@ func (bs *Betterstack) GetMonitorGroup(monitorGroupID string) (*uptime.Group, er
 }
 
 // GetAllMonitorsInGroup returns monitors belonging to the given monitor group.
-func (bs *Betterstack) GetAllMonitorsInGroup(monitorGroupID string) (*uptime.Monitors, error) {
+func (bs *Betterstack) GetAllMonitorsInGroup(monitorGroupID string) (*models.Monitors, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/monitor-groups/"+monitorGroupID+"/monitors", nil)
 	if err != nil {
 		return nil, err
@@ -66,7 +66,7 @@ func (bs *Betterstack) GetAllMonitorsInGroup(monitorGroupID string) (*uptime.Mon
 		return nil, err
 	}
 
-	data := &uptime.Monitors{}
+	data := &models.Monitors{}
 	err = json.Unmarshal(body, data)
 	if err != nil {
 		return nil, err
@@ -76,7 +76,7 @@ func (bs *Betterstack) GetAllMonitorsInGroup(monitorGroupID string) (*uptime.Mon
 }
 
 // CreateMonitorGroup returns either a newly created monitor group, or validation errors.
-func (bs *Betterstack) CreateMonitorGroup(bodyParams uptime.GroupReqBody) (*uptime.Group, error) {
+func (bs *Betterstack) CreateMonitorGroup(bodyParams models.GroupReqBody) (*models.Group, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -93,7 +93,7 @@ func (bs *Betterstack) CreateMonitorGroup(bodyParams uptime.GroupReqBody) (*upti
 	}
 
 	type response struct {
-		Data uptime.Group `json:"data"`
+		Data models.Group `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -106,7 +106,7 @@ func (bs *Betterstack) CreateMonitorGroup(bodyParams uptime.GroupReqBody) (*upti
 }
 
 // UpdateMonitorGroup updates the attributes of an existing monitor group. Send only the parameters you wish to change (e.g. name).
-func (bs *Betterstack) UpdateMonitorGroup(monitorGroupID string, bodyParams uptime.GroupReqBody) (*uptime.Group, error) {
+func (bs *Betterstack) UpdateMonitorGroup(monitorGroupID string, bodyParams models.GroupReqBody) (*models.Group, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -123,7 +123,7 @@ func (bs *Betterstack) UpdateMonitorGroup(monitorGroupID string, bodyParams upti
 	}
 
 	type response struct {
-		Data uptime.Group `json:"data"`
+		Data models.Group `json:"data"`
 	}
 
 	resJSON := &response{}

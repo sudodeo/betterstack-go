@@ -1,4 +1,4 @@
-package uptime
+package models
 
 // MetadataRecordReqBody represents the request body to create a metadata
 type MetadataRecordReqBody struct {

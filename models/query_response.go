@@ -1,4 +1,4 @@
-package logs
+package models
 
 // Logs represents a response containing a list of logs
 type Logs struct {

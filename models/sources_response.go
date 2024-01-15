@@ -1,4 +1,4 @@
-package logs
+package models
 
 // Sources represents a response containing a list of log sources.
 type Sources struct {
@@ -8,8 +8,7 @@ type Sources struct {
 
 // Source represents a log source.
 type Source struct {
-	ID         string            `json:"id"`
-	Type       string            `json:"type"`
+	data
 	Attributes sourcesAttributes `json:"attributes"`
 }
 
@@ -31,11 +30,4 @@ type sourcesAttributes struct {
 	ColumnsQuota          int      `json:"columns_quota"`
 	LivetailPrimaryFields []string `json:"livetail_primary_fields"`
 	GrafanaPrimaryFields  []string `json:"grafana_primary_fields"`
-}
-
-type pagination struct {
-	First string `json:"first"`
-	Last  string `json:"last"`
-	Prev  string `json:"prev"`
-	Next  string `json:"next"`
 }

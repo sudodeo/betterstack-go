@@ -5,11 +5,11 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/sudodeo/betterstack-go/models/uptime"
+	"github.com/sudodeo/betterstack-go/models"
 )
 
 // ListMonitors returns list of all your monitors
-func (bs *Betterstack) ListMonitors(queryParams uptime.ListMonitorsQuery) (*uptime.Monitors, error) {
+func (bs *Betterstack) ListMonitors(queryParams models.ListMonitorsQuery) (*models.Monitors, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/monitors", nil)
 	if err != nil {
 		return nil, err
@@ -20,7 +20,7 @@ func (bs *Betterstack) ListMonitors(queryParams uptime.ListMonitorsQuery) (*upti
 		return nil, err
 	}
 
-	data := &uptime.Monitors{}
+	data := &models.Monitors{}
 	err = json.Unmarshal(body, data)
 	if err != nil {
 		return nil, err
@@ -30,7 +30,7 @@ func (bs *Betterstack) ListMonitors(queryParams uptime.ListMonitorsQuery) (*upti
 }
 
 // GetMonitor returns a single monitor.
-func (bs *Betterstack) GetMonitor(monitorID string) (*uptime.Monitor, error) {
+func (bs *Betterstack) GetMonitor(monitorID string) (*models.Monitor, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/monitors/"+monitorID, nil)
 	if err != nil {
 		return nil, err
@@ -42,7 +42,7 @@ func (bs *Betterstack) GetMonitor(monitorID string) (*uptime.Monitor, error) {
 	}
 
 	type response struct {
-		Data uptime.Monitor `json:"data"`
+		Data models.Monitor `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -55,7 +55,7 @@ func (bs *Betterstack) GetMonitor(monitorID string) (*uptime.Monitor, error) {
 }
 
 // GetResponseTimes returns the response times for a monitor (last 24h).
-func (bs *Betterstack) GetResponseTimes(monitorID string) (*uptime.MonitorResponseTime, error) {
+func (bs *Betterstack) GetResponseTimes(monitorID string) (*models.MonitorResponseTime, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/monitors/"+monitorID+"/response-times", nil)
 	if err != nil {
 		return nil, err
@@ -67,7 +67,7 @@ func (bs *Betterstack) GetResponseTimes(monitorID string) (*uptime.MonitorRespon
 	}
 
 	type response struct {
-		Data uptime.MonitorResponseTime `json:"data"`
+		Data models.MonitorResponseTime `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -80,7 +80,7 @@ func (bs *Betterstack) GetResponseTimes(monitorID string) (*uptime.MonitorRespon
 }
 
 // GetAvailability returns availability summary for a specific monitor.
-func (bs *Betterstack) GetAvailability(queryParams uptime.MonitorAvailabilityQuery) (*uptime.MonitorAvailability, error) {
+func (bs *Betterstack) GetAvailability(queryParams models.MonitorAvailabilityQuery) (*models.MonitorAvailability, error) {
 	URL := "/api/v2/monitors/" + queryParams.MonitorID + "/sla"
 	if queryParams.From != "" {
 		URL = URL + "?from=" + queryParams.From
@@ -100,7 +100,7 @@ func (bs *Betterstack) GetAvailability(queryParams uptime.MonitorAvailabilityQue
 	}
 
 	type response struct {
-		Data uptime.MonitorAvailability `json:"data"`
+		Data models.MonitorAvailability `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -113,7 +113,7 @@ func (bs *Betterstack) GetAvailability(queryParams uptime.MonitorAvailabilityQue
 }
 
 // CreateMonitor returns a newly created monitor or validation errors.
-func (bs *Betterstack) CreateMonitor(bodyParams uptime.MonitorReqBody) (*uptime.Monitor, error) {
+func (bs *Betterstack) CreateMonitor(bodyParams models.MonitorReqBody) (*models.Monitor, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -130,7 +130,7 @@ func (bs *Betterstack) CreateMonitor(bodyParams uptime.MonitorReqBody) (*uptime.
 	}
 
 	type response struct {
-		Data uptime.Monitor `json:"data"`
+		Data models.Monitor `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -143,7 +143,7 @@ func (bs *Betterstack) CreateMonitor(bodyParams uptime.MonitorReqBody) (*uptime.
 }
 
 // UpdateMonitor updates existing monitor configuration. Send only the parameters you wish to change (eg. url)
-func (bs *Betterstack) UpdateMonitor(monitorID string, bodyParams uptime.MonitorReqBody) (*uptime.Monitor, error) {
+func (bs *Betterstack) UpdateMonitor(monitorID string, bodyParams models.MonitorReqBody) (*models.Monitor, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -160,7 +160,7 @@ func (bs *Betterstack) UpdateMonitor(monitorID string, bodyParams uptime.Monitor
 	}
 
 	type response struct {
-		Data uptime.Monitor `json:"data"`
+		Data models.Monitor `json:"data"`
 	}
 
 	resJSON := &response{}

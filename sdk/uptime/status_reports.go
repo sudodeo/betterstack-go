@@ -6,11 +6,11 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/sudodeo/betterstack-go/models/uptime"
+	"github.com/sudodeo/betterstack-go/models"
 )
 
 // ListStatusPageReports returns a list of the reports of your status page.
-func (bs *Betterstack) ListStatusPageReports(statusPageID string) (*uptime.StatusPageReports, error) {
+func (bs *Betterstack) ListStatusPageReports(statusPageID string) (*models.StatusPageReports, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/status-pages/"+statusPageID+"/status-reports/", nil)
 	if err != nil {
 		return nil, err
@@ -21,7 +21,7 @@ func (bs *Betterstack) ListStatusPageReports(statusPageID string) (*uptime.Statu
 		return nil, err
 	}
 
-	data := &uptime.StatusPageReports{}
+	data := &models.StatusPageReports{}
 	err = json.Unmarshal(body, data)
 	if err != nil {
 		return nil, err
@@ -31,7 +31,7 @@ func (bs *Betterstack) ListStatusPageReports(statusPageID string) (*uptime.Statu
 }
 
 // GetStatusPageReport returns a single statusPage by ID.
-func (bs *Betterstack) GetStatusPageReport(statusPageID, reportID string) (*uptime.StatusPageReport, error) {
+func (bs *Betterstack) GetStatusPageReport(statusPageID, reportID string) (*models.StatusPageReport, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/status-pages/"+statusPageID+"/status-reports/"+reportID, nil)
 	if err != nil {
 		return nil, err
@@ -42,7 +42,7 @@ func (bs *Betterstack) GetStatusPageReport(statusPageID, reportID string) (*upti
 		return nil, err
 	}
 
-	resJSON := &uptime.StatusPageReport{}
+	resJSON := &models.StatusPageReport{}
 	err = json.Unmarshal(body, resJSON)
 	if err != nil {
 		return nil, err
@@ -52,7 +52,7 @@ func (bs *Betterstack) GetStatusPageReport(statusPageID, reportID string) (*upti
 }
 
 // CreateStatusPageReport returns either a newly created statusPage, or validation errors.
-func (bs *Betterstack) CreateStatusPageReport(statusPageID string, bodyParams uptime.StatusPageReportReqBody) (*uptime.StatusPageReport, error) {
+func (bs *Betterstack) CreateStatusPageReport(statusPageID string, bodyParams models.StatusPageReportReqBody) (*models.StatusPageReport, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -69,7 +69,7 @@ func (bs *Betterstack) CreateStatusPageReport(statusPageID string, bodyParams up
 	}
 	fmt.Println(string(body))
 
-	resJSON := &uptime.StatusPageReport{}
+	resJSON := &models.StatusPageReport{}
 	err = json.Unmarshal(body, resJSON)
 	if err != nil {
 		return nil, err
@@ -79,7 +79,7 @@ func (bs *Betterstack) CreateStatusPageReport(statusPageID string, bodyParams up
 }
 
 // UpdateStatusPageReport update an existing statusPage configuration. Send only the parameters you wish to change (e.g. name)
-func (bs *Betterstack) UpdateStatusPageReport(statusPageID, statusPageReportID string, bodyParams uptime.StatusPageReportReqBody) (*uptime.StatusPageReport, error) {
+func (bs *Betterstack) UpdateStatusPageReport(statusPageID, statusPageReportID string, bodyParams models.StatusPageReportReqBody) (*models.StatusPageReport, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -95,7 +95,7 @@ func (bs *Betterstack) UpdateStatusPageReport(statusPageID, statusPageReportID s
 		return nil, err
 	}
 
-	resJSON := &uptime.StatusPageReport{}
+	resJSON := &models.StatusPageReport{}
 	err = json.Unmarshal(body, resJSON)
 	if err != nil {
 		return nil, err

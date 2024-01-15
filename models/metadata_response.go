@@ -1,4 +1,4 @@
-package uptime
+package models
 
 // Metadata represents the metadata information in the response.
 type Metadata struct {

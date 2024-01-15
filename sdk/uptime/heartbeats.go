@@ -5,11 +5,11 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/sudodeo/betterstack-go/models/uptime"
+	"github.com/sudodeo/betterstack-go/models"
 )
 
 // ListHeartbeats returns a list of all your heartbeats.
-func (bs *Betterstack) ListHeartbeats(perPage *int) (*uptime.Heartbeats, error) {
+func (bs *Betterstack) ListHeartbeats(perPage *int) (*models.Heartbeats, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/heartbeats", nil)
 	if err != nil {
 		return nil, err
@@ -20,7 +20,7 @@ func (bs *Betterstack) ListHeartbeats(perPage *int) (*uptime.Heartbeats, error) 
 		return nil, err
 	}
 
-	data := &uptime.Heartbeats{}
+	data := &models.Heartbeats{}
 	err = json.Unmarshal(body, data)
 	if err != nil {
 		return nil, err
@@ -30,7 +30,7 @@ func (bs *Betterstack) ListHeartbeats(perPage *int) (*uptime.Heartbeats, error) 
 }
 
 // GetHeartbeat returns a single heartbeat by ID.
-func (bs *Betterstack) GetHeartbeat(heartbeatID string) (*uptime.Heartbeat, error) {
+func (bs *Betterstack) GetHeartbeat(heartbeatID string) (*models.Heartbeat, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/heartbeats/"+heartbeatID, nil)
 	if err != nil {
 		return nil, err
@@ -42,7 +42,7 @@ func (bs *Betterstack) GetHeartbeat(heartbeatID string) (*uptime.Heartbeat, erro
 	}
 
 	type response struct {
-		Data uptime.Heartbeat `json:"data"`
+		Data models.Heartbeat `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -55,7 +55,7 @@ func (bs *Betterstack) GetHeartbeat(heartbeatID string) (*uptime.Heartbeat, erro
 }
 
 // CreateHeartbeat returns either a newly created heartbeat, or validation errors.
-func (bs *Betterstack) CreateHeartbeat(bodyParams uptime.HeartbeatReqBody) (*uptime.Heartbeat, error) {
+func (bs *Betterstack) CreateHeartbeat(bodyParams models.HeartbeatReqBody) (*models.Heartbeat, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -72,7 +72,7 @@ func (bs *Betterstack) CreateHeartbeat(bodyParams uptime.HeartbeatReqBody) (*upt
 	}
 
 	type response struct {
-		Data uptime.Heartbeat `json:"data"`
+		Data models.Heartbeat `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -85,7 +85,7 @@ func (bs *Betterstack) CreateHeartbeat(bodyParams uptime.HeartbeatReqBody) (*upt
 }
 
 // UpdateHeartbeat update an existing heartbeat configuration. Send only the parameters you wish to change (e.g. name)
-func (bs *Betterstack) UpdateHeartbeat(heartbeatID string, bodyParams uptime.HeartbeatReqBody) (*uptime.Heartbeat, error) {
+func (bs *Betterstack) UpdateHeartbeat(heartbeatID string, bodyParams models.HeartbeatReqBody) (*models.Heartbeat, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -102,7 +102,7 @@ func (bs *Betterstack) UpdateHeartbeat(heartbeatID string, bodyParams uptime.Hea
 	}
 
 	type response struct {
-		Data uptime.Heartbeat `json:"data"`
+		Data models.Heartbeat `json:"data"`
 	}
 
 	resJSON := &response{}

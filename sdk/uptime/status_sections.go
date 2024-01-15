@@ -5,11 +5,11 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/sudodeo/betterstack-go/models/uptime"
+	"github.com/sudodeo/betterstack-go/models"
 )
 
 // ListStatusPageSections returns a list of the sections of your status page.
-func (bs *Betterstack) ListStatusPageSections(statusPageID string) (*uptime.StatusPageSections, error) {
+func (bs *Betterstack) ListStatusPageSections(statusPageID string) (*models.StatusPageSections, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/status-pages/"+statusPageID+"/sections", nil)
 	if err != nil {
 		return nil, err
@@ -20,7 +20,7 @@ func (bs *Betterstack) ListStatusPageSections(statusPageID string) (*uptime.Stat
 		return nil, err
 	}
 
-	data := &uptime.StatusPageSections{}
+	data := &models.StatusPageSections{}
 	err = json.Unmarshal(body, data)
 	if err != nil {
 		return nil, err
@@ -30,7 +30,7 @@ func (bs *Betterstack) ListStatusPageSections(statusPageID string) (*uptime.Stat
 }
 
 // GetStatusPageSection returns a single statusPage by ID.
-func (bs *Betterstack) GetStatusPageSection(statusPageID, sectionID string) (*uptime.StatusPageSection, error) {
+func (bs *Betterstack) GetStatusPageSection(statusPageID, sectionID string) (*models.StatusPageSection, error) {
 	req, err := http.NewRequest(http.MethodGet, "/api/v2/status-pages/"+statusPageID+"/sections/"+sectionID, nil)
 	if err != nil {
 		return nil, err
@@ -42,7 +42,7 @@ func (bs *Betterstack) GetStatusPageSection(statusPageID, sectionID string) (*up
 	}
 
 	type response struct {
-		Data uptime.StatusPageSection `json:"data"`
+		Data models.StatusPageSection `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -55,7 +55,7 @@ func (bs *Betterstack) GetStatusPageSection(statusPageID, sectionID string) (*up
 }
 
 // CreateStatusPageSection returns either a newly created statusPage, or validation errors.
-func (bs *Betterstack) CreateStatusPageSection(statusPageID string, bodyParams uptime.StatusPageSectionReqBody) (*uptime.StatusPageSection, error) {
+func (bs *Betterstack) CreateStatusPageSection(statusPageID string, bodyParams models.StatusPageSectionReqBody) (*models.StatusPageSection, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -72,7 +72,7 @@ func (bs *Betterstack) CreateStatusPageSection(statusPageID string, bodyParams u
 	}
 
 	type response struct {
-		Data uptime.StatusPageSection `json:"data"`
+		Data models.StatusPageSection `json:"data"`
 	}
 
 	resJSON := &response{}
@@ -85,7 +85,7 @@ func (bs *Betterstack) CreateStatusPageSection(statusPageID string, bodyParams u
 }
 
 // UpdateStatusPageSection update an existing statusPage configuration. Send only the parameters you wish to change (e.g. name)
-func (bs *Betterstack) UpdateStatusPageSection(statusPageID, statusPageSectionID string, bodyParams uptime.StatusPageSectionReqBody) (*uptime.StatusPageSection, error) {
+func (bs *Betterstack) UpdateStatusPageSection(statusPageID, statusPageSectionID string, bodyParams models.StatusPageSectionReqBody) (*models.StatusPageSection, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -102,7 +102,7 @@ func (bs *Betterstack) UpdateStatusPageSection(statusPageID, statusPageSectionID
 	}
 
 	type response struct {
-		Data uptime.StatusPageSection `json:"data"`
+		Data models.StatusPageSection `json:"data"`
 	}
 
 	resJSON := &response{}

@@ -1,4 +1,4 @@
-package uptime
+package models
 
 // GroupReqBody represents the request body for monitor groups and heartbeat groups
 type GroupReqBody struct {

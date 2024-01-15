@@ -1,4 +1,4 @@
-package uptime
+package models
 
 // StatusPageReports represents a response body for a list of status page reports
 type StatusPageReports struct {
@@ -39,7 +39,6 @@ type includedAttributes struct {
 	StatusReportID    int                `json:"status_report_id"`
 	AffectedResources []AffectedResource `json:"affected_resources"`
 }
-
 
 // AffectedResource represents a resource that is affected by a status report.
 type AffectedResource struct {

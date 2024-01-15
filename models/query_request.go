@@ -1,4 +1,4 @@
-package logs
+package models
 
 // FetchLogsParams represents the request body to fetch logs
 type FetchLogsParams struct {

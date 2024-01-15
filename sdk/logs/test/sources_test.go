@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/sudodeo/betterstack-go/models/logs"
+	"github.com/sudodeo/betterstack-go/models"
 )
 
 var (
@@ -18,7 +18,7 @@ func TestListSources(t *testing.T) {
 	sources, err := bs.ListSources(&page, nil)
 	assert.Nil(t, err)
 	assert.NotNil(t, sources)
-	assert.IsType(t, &logs.Sources{}, sources)
+	assert.IsType(t, &models.Sources{}, sources)
 
 	// Test case 2: failed API response due to invalid page number
 	page = -1
@@ -30,14 +30,14 @@ func TestListSources(t *testing.T) {
 
 func TestCreateSource(t *testing.T) {
 	// Test case 1: successful API response
-	bodyParams := &logs.CreateSourceBodyParams{
+	bodyParams := &models.CreateSourceBodyParams{
 		Name:     "test_source",
-		Platform: logs.PlatformList.Docker,
+		Platform: models.PlatformList.Docker,
 	}
 	source, err := bs.CreateSource(*bodyParams)
 	assert.Nil(t, err)
 	assert.NotNil(t, source)
-	assert.IsType(t, &logs.Source{}, source)
+	assert.IsType(t, &models.Source{}, source)
 	testSourceID = source.ID
 
 	// Test case 2: failed API response due to missing name
@@ -60,7 +60,7 @@ func TestGetSource(t *testing.T) {
 	source, err := bs.GetSource(testSourceID)
 	assert.Nil(t, err)
 	assert.NotNil(t, source)
-	assert.IsType(t, &logs.Source{}, source)
+	assert.IsType(t, &models.Source{}, source)
 
 	// Test case 2: failed API response
 	source, err = bs.GetSource("invalidID")
@@ -71,14 +71,14 @@ func TestGetSource(t *testing.T) {
 func TestUpdateSource(t *testing.T) {
 	// Test case 1: Successful API response
 	updateName := "update_test_source"
-	bodyParams := logs.UpdateSourceBodyParams{
+	bodyParams := models.UpdateSourceBodyParams{
 		Name:            updateName,
 		IngestingPaused: true,
 	}
 	source, err := bs.UpdateSource(testSourceID, bodyParams)
 	assert.Nil(t, err)
 	assert.NotNil(t, source)
-	assert.IsType(t, &logs.Source{}, source)
+	assert.IsType(t, &models.Source{}, source)
 	assert.Equal(t, updateName, source.Attributes.Name)
 	assert.Equal(t, true, source.Attributes.IngestingPaused)
 

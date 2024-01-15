@@ -1,4 +1,4 @@
-package uptime
+package models
 
 // StatusPageSectionReqBody represents the request body for creating/updating a status page.
 type StatusPageSectionReqBody struct {

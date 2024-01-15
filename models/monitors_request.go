@@ -1,4 +1,4 @@
-package uptime
+package models
 
 // ListMonitorsQuery represents the query parameters to
 // make a request for a list of monitors

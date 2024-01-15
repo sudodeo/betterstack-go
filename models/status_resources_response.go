@@ -1,4 +1,4 @@
-package uptime
+package models
 
 // StatusPageResources represents the response containing status page resources
 type StatusPageResources struct {

@@ -1,4 +1,4 @@
-package uptime
+package models
 
 // StatusPageSections represents a collection of status pages.
 type StatusPageSections struct {

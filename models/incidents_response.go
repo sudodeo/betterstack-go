@@ -1,4 +1,4 @@
-package uptime
+package models
 
 // Incidents represents a collection of incidents.
 type Incidents struct {
