@@ -97,5 +97,5 @@ func TestDeleteStatusPageReport(t *testing.T) {
 	err = bs.DeleteStatusPage(newStatusPageID)
 	assert.Nil(t, err)
 
-	err = bs.DeleteMonitor(newResourceID)
+	err = bs.DeleteMonitor(monitorID)
 }
