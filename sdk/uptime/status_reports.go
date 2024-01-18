@@ -3,7 +3,6 @@ package uptime
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"github.com/sudodeo/betterstack-go/models"
@@ -67,7 +66,6 @@ func (bs *Betterstack) CreateStatusPageReport(statusPageID string, bodyParams mo
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println(string(body))
 
 	resJSON := &models.StatusPageReport{}
 	err = json.Unmarshal(body, resJSON)

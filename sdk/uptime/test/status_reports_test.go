@@ -1,7 +1,6 @@
 package uptime_test
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -55,7 +54,7 @@ func TestCreateStatusPageReport(t *testing.T) {
 	statusPageReport, err := bs.CreateStatusPageReport(newStatusPageID, reqBody)
 	assert.Nil(t, err)
 	assert.NotNil(t, statusPageReport)
-	fmt.Println(statusPageReport)
+
 	assert.IsType(t, &models.StatusPageReport{}, statusPageReport)
 	assert.Equal(t, reqBody.Title, statusPageReport.Data.Attributes.Title)
 	assert.Equal(t, reqBody.Message, statusPageReport.Included[0].Attributes.Message)
