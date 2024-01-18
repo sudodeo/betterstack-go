@@ -50,34 +50,35 @@ To obtain your logs API token, view instructions from [BetterStack](https://bett
 - [x] Status Pages
 - [x] Status Pages Sections
 - [x] Status Pages Resources 
-- [ ] Status Pages Reports 
-- [ ] Status Pages Report Updates 
+- [x] Status Pages Reports 
+- [x] Status Pages Report Updates 
 - [x] Metadata
 
 ### Logs
 - [x] Sources
 - [x] Query
+
 <!-- ## Usage/Examples
 
 ```golang
 package main
 
 import (
-    "github.com/sudodeo/betterstack-go"
+    betterstack "github.com/sudodeo/betterstack-go"
 )
 
 func main(){
-    dp, err := doppler.NewFromEnv()
+    bs, err := betterstack.NewFromENV()
     if err != nil {
         panic(err)
     }
 
-    projects, err := dp.ListMonitors()
+    monitors, err := bs.ListMonitors()
     if err != nil {
         panic(err)
     }
 
-    log.Println(projects)
+    log.Println(monitors)
 }
 ``` -->
 
