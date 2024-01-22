@@ -2,6 +2,7 @@ package uptime
 
 import (
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -10,6 +11,7 @@ import (
 	"runtime"
 
 	"github.com/joho/godotenv"
+	"github.com/sudodeo/betterstack-go/sdk"
 )
 
 // Betterstack represents the client for interacting with the Betterstack API.
@@ -60,24 +62,56 @@ func (bs *Betterstack) MakeAPIRequest(req *http.Request) ([]byte, error) {
 	return body, nil
 }
 
-// NewFromENV creates a new instance of the betterstack struct using the UPTIME_API_TOKEN environment variable.
-// It returns a pointer to the betterstack struct and an error if any.
+// NewFromENV creates a new instance of the Betterstack struct using the UPTIME_API_TOKEN environment variable.
+// It returns a pointer to the Betterstack struct and an error if any.
 func NewFromENV() (*Betterstack, error) {
-	if os.Getenv("env") == "test" { // only way to load env variables in test
-		_, file, _, ok := runtime.Caller(0)
-		if !ok {
-			return nil, errors.New("unable to identify current directory")
-		}
-
-		basepath := filepath.Dir(file)
-		envPath := filepath.Join(basepath, "../../.env")
-		err := godotenv.Load(envPath)
+	if os.Getenv("env") == "test" {
+		// Only load environment variables from a specific path during testing
+		err := loadEnvForTest()
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("failed to load environment variables for test: %v", err)
 		}
 	}
 
 	uptimeAPIToken := os.Getenv("UPTIME_API_TOKEN")
+
+	bs := Betterstack{
+		Token:   uptimeAPIToken,
+		client:  &http.Client{},
+		baseURL: "uptime.betterstack.com",
+	}
+
+	return &bs, nil
+}
+
+func loadEnvForTest() error {
+	_, file, _, ok := runtime.Caller(0)
+	if !ok {
+		return errors.New("unable to identify current directory")
+	}
+
+	basepath := filepath.Dir(file)
+	envPath := filepath.Join(basepath, "../../.env")
+
+	err := godotenv.Load(envPath)
+	if err != nil {
+		return fmt.Errorf("failed to load .env file: %v", err)
+	}
+
+	return nil
+}
+
+// New creates a new instance of the Betterstack struct using the provided config.
+func New(config *sdk.Config) (*Betterstack, error) {
+	if config == nil {
+		return nil, fmt.Errorf("config is required")
+	}
+
+	if config.APIType != "uptime" {
+		return nil, fmt.Errorf("invalid API type: %s", config.APIType)
+	}
+
+	uptimeAPIToken := config.APIToken
 
 	bs := Betterstack{
 		Token:   uptimeAPIToken,
