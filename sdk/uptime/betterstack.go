@@ -63,17 +63,18 @@ func (bs *Betterstack) MakeAPIRequest(req *http.Request) ([]byte, error) {
 // NewFromENV creates a new instance of the betterstack struct using the UPTIME_API_TOKEN environment variable.
 // It returns a pointer to the betterstack struct and an error if any.
 func NewFromENV() (*Betterstack, error) {
-	// only way to load env variables in test
-	_, file, _, ok := runtime.Caller(0)
-	if !ok {
-		return nil, errors.New("unable to identify current directory")
-	}
+	if os.Getenv("env") == "test" { // only way to load env variables in test
+		_, file, _, ok := runtime.Caller(0)
+		if !ok {
+			return nil, errors.New("unable to identify current directory")
+		}
 
-	basepath := filepath.Dir(file)
-	envPath := filepath.Join(basepath, "../../.env")
-	err := godotenv.Load(envPath)
-	if err != nil {
-		return nil, err
+		basepath := filepath.Dir(file)
+		envPath := filepath.Join(basepath, "../../.env")
+		err := godotenv.Load(envPath)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	uptimeAPIToken := os.Getenv("UPTIME_API_TOKEN")
