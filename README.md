@@ -1,6 +1,6 @@
 # BetterStack-Go
 
-Golang SDK client for betterstack.com APIs.
+Explore seamless integration with BetterStack's powerful APIs using this Golang SDK. This personal project is crafted to streamline your development process, offering a robust set of tools for interacting with [Betterstack](https://betterstack.com) services. While it's not officially affiliated with BetterStack, this SDK aims to provide a convenient and efficient way for developers to enhance their projects with the flexibility of the BetterStack Golang SDK.
 
 ## Installation
 
