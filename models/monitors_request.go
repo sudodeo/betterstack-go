@@ -8,9 +8,9 @@ import (
 // ListMonitorsQuery represents the query parameters to
 // make a request for a list of monitors
 type ListMonitorsQuery struct {
-	URL              string
-	PronounceablName string
-	PerPage          int
+	URL               string
+	PronounceableName string
+	PerPage           int
 }
 
 func (q ListMonitorsQuery) ToUrlString() string {
