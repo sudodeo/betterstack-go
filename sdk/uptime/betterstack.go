@@ -23,17 +23,25 @@ type Betterstack struct {
 
 // MakeAPIRequest sends an API request using the provided http.Request object and returns the response body as a byte array.
 // If the request fails or the response status code is not 200, an error is returned.
-func (bs *Betterstack) MakeAPIRequest(req *http.Request) ([]byte, error) {
+func (bs *Betterstack) MakeAPIRequest(req *http.Request, rawQueryStrings ...string) ([]byte, error) {
 	req.Header = http.Header{
 		"accept":        {"application/json"},
 		"content-type":  {"application/json"},
 		"Authorization": {"Bearer " + bs.Token},
 	}
 
+	var rawQueryString string
+	if len(rawQueryStrings) > 0 {
+		for _, rawQuery := range rawQueryStrings {
+			rawQueryString += "&" + rawQuery
+		}
+	}
+
 	req.URL = &url.URL{
-		Scheme: "https",
-		Host:   bs.baseURL,
-		Path:   req.URL.Path,
+		Scheme:   "https",
+		Host:     bs.baseURL,
+		Path:     req.URL.Path,
+		RawQuery: rawQueryString,
 	}
 
 	res, err := bs.client.Do(req)

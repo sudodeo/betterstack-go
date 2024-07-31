@@ -1,11 +1,24 @@
 package models
 
+import (
+	"net/url"
+	"strconv"
+)
+
 // ListMonitorsQuery represents the query parameters to
 // make a request for a list of monitors
 type ListMonitorsQuery struct {
 	URL              string
 	PronounceablName string
 	PerPage          int
+}
+
+func (q ListMonitorsQuery) ToUrlString() string {
+	params := url.Values{}
+	params.Add("url", q.URL)
+	params.Add("pronounceable_name", q.PronounceableName)
+	params.Add("per_page", strconv.Itoa(q.PerPage))
+	return params.Encode()
 }
 
 // MonitorAvailabilityQuery represents a query for
@@ -21,7 +34,7 @@ type MonitorAvailabilityQuery struct {
 type MonitorReqBody struct {
 	URL                 string          `json:"url"`                             // Required
 	MonitorType         string          `json:"monitor_type,omitempty"`          // defaults to `status` if empty. access valid values with MonitorTypeList
-	PronounceablName    string          `json:"pronounceabl_name,omitempty"`     // name of monitor
+	PronounceableName   string          `json:"pronounceable_name,omitempty"`    // name of monitor
 	Email               bool            `json:"email,omitempty"`                 // Send email alerts
 	SMS                 bool            `json:"sms,omitempty"`                   // Send sms alerts
 	Call                bool            `json:"call,omitempty"`                  // Phone call alerts
