@@ -15,7 +15,7 @@ func (bs *Betterstack) ListMonitors(queryParams models.ListMonitorsQuery) (*mode
 		return nil, err
 	}
 
-	body, err := bs.MakeAPIRequest(req)
+	body, err := bs.MakeAPIRequest(req, queryParams.ToUrlString())
 	if err != nil {
 		return nil, err
 	}

@@ -15,7 +15,7 @@ type Monitor struct {
 
 type monitorAttributes struct {
 	URL                 string          `json:"url"`
-	PronounceablName    string          `json:"pronounceable_name"`
+	PronounceableName   string          `json:"pronounceable_name"`
 	MonitorType         string          `json:"monitor_type"`
 	MonitorGroupID      int             `json:"monitor_group_id"`
 	LastCheckedAt       string          `json:"last_checked_at"`
