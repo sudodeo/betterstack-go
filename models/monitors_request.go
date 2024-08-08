@@ -64,6 +64,8 @@ type MonitorReqBody struct {
 	MaintenanceTo       string          `json:"maintenance_to,omitempty"`        // End of the maintenance window each day. Example: '03:00:00'
 	MaintenanceTimezone string          `json:"maintenance_timezone,omitempty"`  // Defaults to UTC. The accepted values can be found in the Rails TimeZone documentation. https://api.rubyonrails.org/classes/ActiveSupport/TimeZone.html
 	RememberCookies     bool            `json:"remember_cookies,omitempty"`      // keep cookies when redirecting
+	PlaywrightScript    string          `json:"playwright_script,omitempty"`     // Playwright script to run
+	ScenarioName        string          `json:"scenario_name,omitempty"`         // Name of the scenario identifying the playwright script
 }
 
 type monitorTypes struct {
