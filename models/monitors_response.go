@@ -51,6 +51,8 @@ type monitorAttributes struct {
 	Port                string          `json:"port"`
 	ConfirmationPeriod  int             `json:"confirmation_period"`
 	ExpectedStatusCodes []int           `json:"expected_status_codes"`
+	PaywrightScript     string          `json:"playwright_script"`
+	ScenarioName        string          `json:"scenario_name"`
 }
 
 type requestHeader struct {
