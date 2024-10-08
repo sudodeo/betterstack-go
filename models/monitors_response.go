@@ -10,10 +10,10 @@ type Monitors struct {
 type Monitor struct {
 	ID         string            `json:"id"`
 	Type       string            `json:"type"`
-	Attributes monitorAttributes `json:"attributes,omitempty"`
+	Attributes MonitorAttributes `json:"attributes,omitempty"`
 }
 
-type monitorAttributes struct {
+type MonitorAttributes struct {
 	URL                 string          `json:"url"`
 	PronounceableName   string          `json:"pronounceable_name"`
 	MonitorType         string          `json:"monitor_type"`
