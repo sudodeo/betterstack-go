@@ -15,8 +15,12 @@ type ListMonitorsQuery struct {
 
 func (q ListMonitorsQuery) ToUrlString() string {
 	params := url.Values{}
-	params.Add("url", q.URL)
-	params.Add("pronounceable_name", q.PronounceableName)
+	if q.URL != "" {
+		params.Add("url", q.URL)
+	}
+	if q.PronounceableName != "" {
+		params.Add("pronounceable_name", q.PronounceableName)
+	}
 	params.Add("per_page", strconv.Itoa(q.PerPage))
 	return params.Encode()
 }
