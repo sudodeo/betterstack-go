@@ -13,7 +13,7 @@ var (
 
 func TestCreateStatusPageReport(t *testing.T) {
 	monitor, err := bs.CreateMonitor(
-		models.MonitorReqBody{
+		models.MonitorCreateReqBody{
 			URL: "https://google.com",
 		},
 	)
