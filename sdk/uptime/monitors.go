@@ -15,7 +15,7 @@ func (bs *Betterstack) ListMonitors(queryParams models.ListMonitorsQuery) (*mode
 		return nil, err
 	}
 
-	body, err := bs.MakeAPIRequest(req, queryParams.ToUrlString())
+	body, err := bs.MakeAPIRequest(req, queryParams.ToURLString())
 	if err != nil {
 		return nil, err
 	}
@@ -113,7 +113,7 @@ func (bs *Betterstack) GetAvailability(queryParams models.MonitorAvailabilityQue
 }
 
 // CreateMonitor returns a newly created monitor or validation errors.
-func (bs *Betterstack) CreateMonitor(bodyParams models.MonitorReqBody) (*models.Monitor, error) {
+func (bs *Betterstack) CreateMonitor(bodyParams models.MonitorCreateReqBody) (*models.Monitor, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err
@@ -143,7 +143,7 @@ func (bs *Betterstack) CreateMonitor(bodyParams models.MonitorReqBody) (*models.
 }
 
 // UpdateMonitor updates existing monitor configuration. Send only the parameters you wish to change (eg. url)
-func (bs *Betterstack) UpdateMonitor(monitorID string, bodyParams models.MonitorReqBody) (*models.Monitor, error) {
+func (bs *Betterstack) UpdateMonitor(monitorID string, bodyParams models.MonitorUpdateReqBody) (*models.Monitor, error) {
 	requestBody, err := json.Marshal(bodyParams)
 	if err != nil {
 		return nil, err

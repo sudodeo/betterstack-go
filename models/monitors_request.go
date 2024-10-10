@@ -13,7 +13,8 @@ type ListMonitorsQuery struct {
 	PerPage           int
 }
 
-func (q ListMonitorsQuery) ToUrlString() string {
+// ToURLString is a method to convert URL to valid string
+func (q ListMonitorsQuery) ToURLString() string {
 	params := url.Values{}
 	if q.URL != "" {
 		params.Add("url", q.URL)
@@ -33,10 +34,8 @@ type MonitorAvailabilityQuery struct {
 	To        string // Optional End date (e.g., 2021-01-27), requires `From` to be set
 }
 
-// MonitorReqBody represents request body to create a monitor
-// URL field is required, every other field is optional
-type MonitorReqBody struct {
-	URL                 string          `json:"url"`                             // Required
+// MonitorBase represents the base request body for creating and updating a monitor
+type MonitorBase struct {
 	MonitorType         string          `json:"monitor_type,omitempty"`          // defaults to `status` if empty. access valid values with MonitorTypeList
 	PronounceableName   string          `json:"pronounceable_name,omitempty"`    // name of monitor
 	Email               bool            `json:"email,omitempty"`                 // Send email alerts
@@ -52,7 +51,6 @@ type MonitorReqBody struct {
 	FollowRedirects     bool            `json:"follow_redirects,omitempty"`      // Should we automatically follow redirects when sending the HTTP request?
 	TeamWait            int             `json:"team_wait,omitempty"`             // How long to wait before escalating the incident alert to the team. Leave blank to disable escalating to the entire team. In seconds.
 	RequiredKeyword     string          `json:"required_keyword,omitempty"`      // Required if monitor_type is set to keyword or udp. We will create a new incident if this keyword is missing on your page.
-	Paused              bool            `json:"paused,omitempty"`                // Set to true to pause monitoring
 	Port                string          `json:"port,omitempty"`                  // Required if monitor_type is set to tcp, udp, smtp, pop, or imap. tcp and udp monitors accept any ports, while smtp, pop, and imap accept only the specified ports corresponding with their servers (e.g. 25,465,587 for smtp).
 	Regions             []string        `json:"regions,omitempty"`               // An array of regions to set. Allowed values are ['us', 'eu', 'as', 'au'] or any subset of these regions.
 	MonitorGroupID      string          `json:"monitor_group_id,omitempty"`      // Set this attribute if you want to add this monitor to a monitor group.
@@ -70,6 +68,20 @@ type MonitorReqBody struct {
 	RememberCookies     bool            `json:"remember_cookies,omitempty"`      // keep cookies when redirecting
 	PlaywrightScript    string          `json:"playwright_script,omitempty"`     // Playwright script to run
 	ScenarioName        string          `json:"scenario_name,omitempty"`         // Name of the scenario identifying the playwright script
+}
+
+// MonitorCreateReqBody represents request body to create a monitor
+type MonitorCreateReqBody struct {
+	MonitorBase
+	URL    string `json:"url"`              // Required
+	Paused bool   `json:"paused,omitempty"` // Set to true to pause monitoring
+}
+
+// MonitorUpdateReqBody represents request body to update a monitor
+type MonitorUpdateReqBody struct {
+	MonitorBase
+	URL    string `json:"url,omitempty"`    // The URL of your website or the host you want to ping
+	Paused *bool  `json:"paused,omitempty"` // Set to true to pause monitoring
 }
 
 type monitorTypes struct {

@@ -18,7 +18,7 @@ func TestListMonitors(t *testing.T) {
 }
 
 func TestCreateMonitor(t *testing.T) {
-	reqBody := models.MonitorReqBody{
+	reqBody := models.MonitorCreateReqBody{
 		URL: "https://test.com",
 	}
 	monitor, err := bs.CreateMonitor(reqBody)
@@ -76,7 +76,7 @@ func TestGetAvailability(t *testing.T) {
 }
 
 func TestUpdateMonitor(t *testing.T) {
-	reqBody := models.MonitorReqBody{
+	reqBody := models.MonitorUpdateReqBody{
 		URL: "https://test-update.com",
 	}
 	monitor, err := bs.UpdateMonitor(monitorID, reqBody)
