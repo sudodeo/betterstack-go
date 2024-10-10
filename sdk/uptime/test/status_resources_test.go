@@ -14,7 +14,7 @@ var (
 
 func TestCreateStatusPageResource(t *testing.T) {
 	monitor, err := bs.CreateMonitor(
-		models.MonitorReqBody{
+		models.MonitorCreateReqBody{
 			URL: "https://google.com",
 		},
 	)

@@ -11,7 +11,7 @@ var statusUpdateID, newStatusReportID string
 
 func TestCreateStatusUpdate(t *testing.T) {
 	monitor, err := bs.CreateMonitor(
-		models.MonitorReqBody{
+		models.MonitorCreateReqBody{
 			URL: "https://google.com",
 		},
 	)
