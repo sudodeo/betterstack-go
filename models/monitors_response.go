@@ -41,6 +41,7 @@ type MonitorAttributes struct {
 	MaintenanceFrom     string          `json:"maintenance_from"`
 	MaintenanceTo       string          `json:"maintenance_to"`
 	MaintenanceTimezone string          `json:"maintenance_timezone"`
+	MaintenanceDays     []string        `json:"maintenance_days"`
 	Relationships       relationships   `json:"relationships"`
 	PausedAt            string          `json:"paused_at"`
 	CreatedAt           string          `json:"created_at"`
