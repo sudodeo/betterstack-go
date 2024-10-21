@@ -67,6 +67,7 @@ type MonitorCreateReqBody struct {
 	MaintenanceFrom     string          `json:"maintenance_from,omitempty"`      // Start of the maintenance window each day. We won't check your website during this window. Example: '01:00:00'
 	MaintenanceTo       string          `json:"maintenance_to,omitempty"`        // End of the maintenance window each day. Example: '03:00:00'
 	MaintenanceTimezone string          `json:"maintenance_timezone,omitempty"`  // Defaults to UTC. The accepted values can be found in the Rails TimeZone documentation. https://api.rubyonrails.org/classes/ActiveSupport/TimeZone.html
+	MaintenanceDays     []string        `json:"maintenance_days,omitempty"`      // An array of maintenance days to set. If a maintenance window is overnight both affected days should be set. Allowed values are ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'] or any subset of these days.
 	RememberCookies     bool            `json:"remember_cookies,omitempty"`      // keep cookies when redirecting
 	PlaywrightScript    string          `json:"playwright_script,omitempty"`     // Playwright script to run
 	ScenarioName        string          `json:"scenario_name,omitempty"`         // Name of the scenario identifying the playwright script
@@ -104,6 +105,7 @@ type MonitorUpdateReqBody struct {
 	MaintenanceFrom     string          `json:"maintenance_from,omitempty"`      // Start of the maintenance window each day. We won't check your website during this window. Example: '01:00:00'
 	MaintenanceTo       string          `json:"maintenance_to,omitempty"`        // End of the maintenance window each day. Example: '03:00:00'
 	MaintenanceTimezone string          `json:"maintenance_timezone,omitempty"`  // Defaults to UTC. The accepted values can be found in the Rails TimeZone documentation. https://api.rubyonrails.org/classes/ActiveSupport/TimeZone.html
+	MaintenanceDays     []string        `json:"maintenance_days,omitempty"`      // An array of maintenance days to set. If a maintenance window is overnight both affected days should be set. Allowed values are ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'] or any subset of these days.
 	RememberCookies     bool            `json:"remember_cookies,omitempty"`      // keep cookies when redirecting
 	PlaywrightScript    string          `json:"playwright_script,omitempty"`     // Playwright script to run
 	ScenarioName        string          `json:"scenario_name,omitempty"`         // Name of the scenario identifying the playwright script
