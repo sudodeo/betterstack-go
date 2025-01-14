@@ -33,7 +33,7 @@ type MonitorAttributes struct {
 	AuthPassword        string          `json:"auth_password"`
 	RequestTimeout      int             `json:"request_timeout"`
 	RecoveryPeriod      int             `json:"recovery_period"`
-	RequestHeaders      []requestHeader `json:"request_headers"`
+	RequestHeaders      []RequestHeader `json:"request_headers"`
 	RequestBody         string          `json:"request_body"`
 	FollowRedirects     bool            `json:"follow_redirects"`
 	RememberCookies     bool            `json:"remember_cookies"`
@@ -56,7 +56,7 @@ type MonitorAttributes struct {
 	ScenarioName        string          `json:"scenario_name"`
 }
 
-type requestHeader struct {
+type RequestHeader struct {
 	ID    string `json:"id,omitempty"`
 	Name  string `json:"name"`
 	Value string `json:"value"`

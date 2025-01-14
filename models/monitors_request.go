@@ -44,7 +44,7 @@ type MonitorCreateReqBody struct {
 	Call                bool            `json:"call,omitempty"`                  // Phone call alerts
 	Push                bool            `json:"push,omitempty"`                  // Should we send a push notification to the on-call person?
 	CheckFrequency      int             `json:"check_frequency,omitempty"`       // Check frequency (in seconds)
-	RequestHeaders      []requestHeader `json:"request_headers,omitempty"`       // The request headers that will be send with the check
+	RequestHeaders      []RequestHeader `json:"request_headers,omitempty"`       // The request headers that will be send with the check
 	ExpectedStatusCodes []int           `json:"expected_status_codes,omitempty"` // An array of status codes you expect to receive from your website. These status codes are considered only if the monitor_type is expected_status_code.
 	DomainExpiration    int             `json:"domain_expiration,omitempty"`     // How many days before the domain expires do you want to be alerted? Valid values are 1, 2, 3, 7, 14, 30, and 60.
 	SSLExpiration       int             `json:"ssl_expiration,omitempty"`        // How many days before the SSL certificate expires do you want to be alerted? Valid values are 1, 2, 3, 7, 14, 30, and 60.
@@ -82,7 +82,7 @@ type MonitorUpdateReqBody struct {
 	Call                bool            `json:"call,omitempty"`                  // Phone call alerts
 	Push                bool            `json:"push,omitempty"`                  // Should we send a push notification to the on-call person?
 	CheckFrequency      int             `json:"check_frequency,omitempty"`       // Check frequency (in seconds)
-	RequestHeaders      []requestHeader `json:"request_headers,omitempty"`       // The request headers that will be send with the check
+	RequestHeaders      []RequestHeader `json:"request_headers,omitempty"`       // The request headers that will be send with the check
 	ExpectedStatusCodes []int           `json:"expected_status_codes,omitempty"` // An array of status codes you expect to receive from your website. These status codes are considered only if the monitor_type is expected_status_code.
 	DomainExpiration    int             `json:"domain_expiration,omitempty"`     // How many days before the domain expires do you want to be alerted? Valid values are 1, 2, 3, 7, 14, 30, and 60.
 	SSLExpiration       int             `json:"ssl_expiration,omitempty"`        // How many days before the SSL certificate expires do you want to be alerted? Valid values are 1, 2, 3, 7, 14, 30, and 60.
