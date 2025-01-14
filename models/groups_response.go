@@ -3,17 +3,17 @@ package models
 // Groups represents the response body for monitor groups and heartbeat groups
 type Groups struct {
 	Data       []Group    `json:"data"`
-	Pagination pagination `json:"pagination"`
+	Pagination Pagination `json:"pagination"`
 }
 
 // Group represents the a monitor group or heartbeat group
 type Group struct {
 	ID         string          `json:"id,omitempty"`
 	Type       string          `json:"type,omitempty"`
-	Attributes groupAttributes `json:"attributes,omitempty"`
+	Attributes GroupAttributes `json:"attributes,omitempty"`
 }
 
-type groupAttributes struct {
+type GroupAttributes struct {
 	Name      string `json:"name,omitempty"`
 	SortIndex int    `json:"sort_index,omitempty"`
 	CreatedAt string `json:"created_at,omitempty"`

@@ -12,7 +12,7 @@ type UpdateSourceBodyParams struct {
 	IngestingPaused bool   `json:"ingesting_paused"` // Enable or disable ingesting for this source
 }
 
-type platform struct {
+type Platform struct {
 	Apache2           string
 	AwsCloudwatch     string
 	AwsEcs            string
@@ -56,7 +56,7 @@ type platform struct {
 }
 
 // PlatformList is the list of supported platforms
-var PlatformList = platform{
+var PlatformList = Platform{
 	Apache2:           "apache2",
 	AwsCloudwatch:     "aws_cloudwatch",
 	AwsEcs:            "aws_ecs",

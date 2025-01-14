@@ -3,16 +3,16 @@ package models
 // NewRelics is a list of NewRelic integrations
 type NewRelics struct {
 	Data       []NewRelic `json:"data"`
-	Pagination pagination `json:"pagination"`
+	Pagination Pagination `json:"pagination"`
 }
 
 // NewRelic is a NewRelic integration
 type NewRelic struct {
-	data
-	Attributes newRelicAttributes `json:"attributes"`
+	Data
+	Attributes NewRelicAttributes `json:"attributes"`
 }
 
-type newRelicAttributes struct {
+type NewRelicAttributes struct {
 	Call           bool   `json:"call"`
 	Sms            bool   `json:"sms"`
 	Email          bool   `json:"email"`

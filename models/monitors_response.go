@@ -3,7 +3,7 @@ package models
 // Monitors represents a response containing a list of responses
 type Monitors struct {
 	Data       []Monitor  `json:"data"`
-	Pagination pagination `json:"pagination"`
+	Pagination Pagination `json:"pagination"`
 }
 
 // Monitor represents a monitor
@@ -42,7 +42,7 @@ type MonitorAttributes struct {
 	MaintenanceTo       string          `json:"maintenance_to"`
 	MaintenanceTimezone string          `json:"maintenance_timezone"`
 	MaintenanceDays     []string        `json:"maintenance_days"`
-	Relationships       relationships   `json:"relationships"`
+	Relationships       Relationships   `json:"relationships"`
 	PausedAt            string          `json:"paused_at"`
 	CreatedAt           string          `json:"created_at"`
 	UpdatedAt           string          `json:"updated_at"`
@@ -62,28 +62,28 @@ type RequestHeader struct {
 	Value string `json:"value"`
 }
 
-type relationships struct {
+type Relationships struct {
 	Policy struct {
 		Data string `json:"data,omitempty"`
 	} `json:"policy,omitempty"`
 	OncallUsers struct {
-		Data []user `json:"data,omitempty"`
+		Data []User `json:"data,omitempty"`
 	} `json:"on_call_users,omitempty"`
 	Monitor struct {
-		Data data `json:"data"`
+		Data Data `json:"data"`
 	} `json:"monitor,omitempty"`
 	Owner struct {
-		Data data `json:"data,omitempty"`
+		Data Data `json:"data,omitempty"`
 	} `json:"owner"`
 	WebhookIntegration struct {
-		Data data `json:"data,omitempty"`
+		Data Data `json:"data,omitempty"`
 	} `json:"webhook_integration,omitempty"`
 	StatusUpdates struct {
-		Data []data
+		Data []Data
 	}
 }
 
-type data struct {
+type Data struct {
 	ID   string `json:"id,omitempty"`
 	Type string `json:"type,omitempty"`
 }
@@ -93,19 +93,19 @@ type data struct {
 type MonitorResponseTime struct {
 	ID         string                 `json:"id"`
 	Type       string                 `json:"type"`
-	Attributes responseTimeAttributes `json:"attributes"`
+	Attributes ResponseTimeAttributes `json:"attributes"`
 }
 
-type responseTimeAttributes struct {
-	Regions []region `json:"regions"`
+type ResponseTimeAttributes struct {
+	Regions []Region `json:"regions"`
 }
 
-type region struct {
+type Region struct {
 	Region        string         `json:"region"`
-	ResponseTimes []responseTime `json:"response_times"`
+	ResponseTimes []ResponseTime `json:"response_times"`
 }
 
-type responseTime struct {
+type ResponseTime struct {
 	At           string  `json:"at"`
 	ResponseTime float64 `json:"response_time"`
 }
@@ -114,10 +114,10 @@ type responseTime struct {
 type MonitorAvailability struct {
 	ID         string                 `json:"id"`
 	Type       string                 `json:"type"`
-	Attributes availabilityAttributes `json:"attributes"`
+	Attributes AvailabilityAttributes `json:"attributes"`
 }
 
-type availabilityAttributes struct {
+type AvailabilityAttributes struct {
 	Availability      float64 `json:"availability,omitempty"`
 	TotalDownTime     int     `json:"total_down_time,omitempty"` // time in seconds
 	NumberOfIncidents int     `json:"number_of_incidents,omitempty"`

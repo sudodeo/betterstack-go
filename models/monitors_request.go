@@ -111,7 +111,7 @@ type MonitorUpdateReqBody struct {
 	ScenarioName        string          `json:"scenario_name,omitempty"`         // Name of the scenario identifying the playwright script
 }
 
-type monitorTypes struct {
+type MonitorTypes struct {
 	Status             string // check your website for a 2XX HTTP status code
 	ExpectedStatusCode string // check if your website returned one of the values in expected_status_codes.
 	Keyword            string // check if your website contains the required_keyword.
@@ -125,7 +125,7 @@ type monitorTypes struct {
 }
 
 // MonitorTypeList is a list of valid betterstack monitor types
-var MonitorTypeList = monitorTypes{
+var MonitorTypeList = MonitorTypes{
 	Status:             "status",
 	ExpectedStatusCode: "expected_status_code",
 	Keyword:            "keyword",

@@ -2,7 +2,7 @@ package models
 
 type EscalationPolicies struct {
 	Data       []EscalationPolicy `json:"data"`
-	Pagination pagination         `json:"pagination"`
+	Pagination Pagination         `json:"pagination"`
 }
 
 type EscalationPolicy struct {

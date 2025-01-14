@@ -3,19 +3,19 @@ package models
 // StatusPageReports represents a response body for a list of status page reports
 type StatusPageReports struct {
 	Data       []StatusPageReport `json:"data,omitempty"`
-	Pagination pagination         `json:"pagination,omitempty"`
+	Pagination Pagination         `json:"pagination,omitempty"`
 }
 
 type statusPageReportData struct {
-	data
+	Data
 	Attributes    reportAttributes `json:"attributes,omitempty"`
-	Relationships relationships    `json:"relationships,omitempty"`
+	Relationships Relationships    `json:"relationships,omitempty"`
 }
 
 // StatusPageReport represents a status report for a status page.
 type StatusPageReport struct {
 	Data     statusPageReportData
-	Included []included `json:"included,omitempty"`
+	Included []Included `json:"included,omitempty"`
 }
 
 type reportAttributes struct {
@@ -28,12 +28,12 @@ type reportAttributes struct {
 	AggregateState    string             `json:"aggregate_state,omitempty"`
 }
 
-type included struct {
-	data
-	Attributes includedAttributes `json:"attributes"`
+type Included struct {
+	Data
+	Attributes IncludedAttributes `json:"attributes"`
 }
 
-type includedAttributes struct {
+type IncludedAttributes struct {
 	Message           string             `json:"message"`
 	PublishedAt       string             `json:"published_at"`
 	StatusReportID    int                `json:"status_report_id"`

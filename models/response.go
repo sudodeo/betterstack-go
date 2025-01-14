@@ -1,6 +1,6 @@
 package models
 
-type pagination struct {
+type Pagination struct {
 	First string `json:"first"`
 	Last  string `json:"last"`
 	Prev  string `json:"prev"`
