@@ -9,10 +9,10 @@ type Sources struct {
 // Source represents a log source.
 type Source struct {
 	Data
-	Attributes sourcesAttributes `json:"attributes"`
+	Attributes SourcesAttributes `json:"attributes"`
 }
 
-type sourcesAttributes struct {
+type SourcesAttributes struct {
 	TeamID                int      `json:"team_id"`
 	Name                  string   `json:"name"`
 	TableName             string   `json:"table_name"`

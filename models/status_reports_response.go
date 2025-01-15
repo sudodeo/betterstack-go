@@ -6,7 +6,7 @@ type StatusPageReports struct {
 	Pagination Pagination         `json:"pagination,omitempty"`
 }
 
-type statusPageReportData struct {
+type StatusPageReportData struct {
 	Data
 	Attributes    reportAttributes `json:"attributes,omitempty"`
 	Relationships Relationships    `json:"relationships,omitempty"`
@@ -14,7 +14,7 @@ type statusPageReportData struct {
 
 // StatusPageReport represents a status report for a status page.
 type StatusPageReport struct {
-	Data     statusPageReportData
+	Data     StatusPageReportData
 	Included []Included `json:"included,omitempty"`
 }
 
