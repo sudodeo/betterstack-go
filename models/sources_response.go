@@ -3,16 +3,16 @@ package models
 // Sources represents a response containing a list of log sources.
 type Sources struct {
 	Data       []Source   `json:"data"`
-	Pagination pagination `json:"pagination,omitempty"`
+	Pagination Pagination `json:"pagination,omitempty"`
 }
 
 // Source represents a log source.
 type Source struct {
-	data
-	Attributes sourcesAttributes `json:"attributes"`
+	Data
+	Attributes SourcesAttributes `json:"attributes"`
 }
 
-type sourcesAttributes struct {
+type SourcesAttributes struct {
 	TeamID                int      `json:"team_id"`
 	Name                  string   `json:"name"`
 	TableName             string   `json:"table_name"`

@@ -3,7 +3,7 @@ package models
 // Logs represents a response containing a list of logs
 type Logs struct {
 	Data       []log      `json:"data"`
-	Pagination pagination `json:"pagination"`
+	Pagination Pagination `json:"pagination"`
 }
 
 type log struct {

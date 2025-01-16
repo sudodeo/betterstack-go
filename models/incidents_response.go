@@ -3,18 +3,18 @@ package models
 // Incidents represents a collection of incidents.
 type Incidents struct {
 	Data       []Incident `json:"data,omitempty"`
-	Pagination pagination `json:"pagination,omitempty"`
+	Pagination Pagination `json:"pagination,omitempty"`
 }
 
 // Incident represents an incident.
 type Incident struct {
 	ID            string             `json:"id,omitempty"`
 	Type          string             `json:"type,omitempty"`
-	Attributes    incidentAttributes `json:"attributes,omitempty"`
-	Relationships relationships      `json:"relationships,omitempty"`
+	Attributes    IncidentAttributes `json:"attributes,omitempty"`
+	Relationships Relationships      `json:"relationships,omitempty"`
 }
 
-type incidentAttributes struct {
+type IncidentAttributes struct {
 	Name               string   `json:"name,omitempty"`
 	URL                string   `json:"url,omitempty"`
 	HTTPMethod         string   `json:"http_method,omitempty"`
@@ -40,34 +40,34 @@ type incidentAttributes struct {
 
 // IncidentTimelineEvents represents a list of timeline events associated with an incident.
 type IncidentTimelineEvents struct {
-	Data []timelineItem `json:"data,omitempty"`
+	Data []TimelineItem `json:"data,omitempty"`
 }
 
-type timelineItem struct {
+type TimelineItem struct {
 	ID         string                 `json:"id,omitempty"`
 	Type       string                 `json:"type,omitempty"`
-	Attributes timelineItemAttributes `json:"attributes,omitempty"`
+	Attributes TimelineItemAttributes `json:"attributes,omitempty"`
 }
 
-type timelineItemAttributes struct {
+type TimelineItemAttributes struct {
 	ItemType string       `json:"item_type,omitempty"`
 	At       string       `json:"at,omitempty"`
-	Data     timelineData `json:"data,omitempty"`
+	Data     TimelineData `json:"data,omitempty"`
 }
 
-type timelineData struct {
+type TimelineData struct {
 	Title       string       `json:"title,omitempty"`
 	Content     string       `json:"content,omitempty"`
-	Attachments []attachment `json:"attachments,omitempty"`
+	Attachments []Attachment `json:"attachments,omitempty"`
 	Links       []string     `json:"links,omitempty"`
 }
 
-type content struct {
+type Content struct {
 	Text string `json:"text,omitempty"`
-	User user   `json:"user,omitempty"`
+	User User   `json:"user,omitempty"`
 }
 
-type attachment struct {
+type Attachment struct {
 	Size     int    `json:"size,omitempty"`
 	Filename string `json:"filename,omitempty"`
 	MimeType string `json:"mime_type,omitempty"`

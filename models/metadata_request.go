@@ -8,7 +8,7 @@ type MetadataRecordReqBody struct {
 	Value     string `json:"value,omitempty"` // Optional, Metadata value
 }
 
-type owner struct {
+type Owner struct {
 	Monitor            string
 	Heartbeat          string
 	Incident           string
@@ -17,7 +17,7 @@ type owner struct {
 }
 
 // OwnerType represents the type of owner for a metadata request.
-var OwnerType = owner{
+var OwnerType = Owner{
 	Monitor:            "Monitor",
 	Heartbeat:          "Heartbeat",
 	Incident:           "Incident",

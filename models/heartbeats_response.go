@@ -3,17 +3,17 @@ package models
 // Heartbeats represents a response containing a list of Heartbeats
 type Heartbeats struct {
 	Data       []Heartbeat
-	Pagination pagination
+	Pagination Pagination
 }
 
 // Heartbeat represents a Heartbeat
 type Heartbeat struct {
 	ID         string
 	Type       string
-	Attributes heartbeatAttributes
+	Attributes HeartbeatAttributes
 }
 
-type heartbeatAttributes struct {
+type HeartbeatAttributes struct {
 	URL              string `json:"url"`
 	Name             string `json:"name"`               // The name of the service for this heartbeat.
 	Period           int    `json:"period"`             // How often should we expect this heartbeat? In seconds Minimum value: 30 seconds
