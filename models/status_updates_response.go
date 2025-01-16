@@ -2,12 +2,12 @@ package models
 
 // StatusUpdates represents a collection of status updates with pagination information.
 type StatusUpdates struct {
-	Data       []StatusUpdate
-	Pagination pagination
+	Data       []StatusUpdate `json:"data"`
+	Pagination Pagination     `json:"pagination"`
 }
 
 // StatusUpdate represents an individual status update with its attributes.
 type StatusUpdate struct {
-	data
-	Attributes includedAttributes
+	Data
+	Attributes IncludedAttributes `json:"attributes"`
 }
